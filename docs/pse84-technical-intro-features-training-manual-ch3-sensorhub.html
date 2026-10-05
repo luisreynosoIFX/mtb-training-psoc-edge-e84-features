@@ -1,0 +1,1024 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual introducing key features of the PSOC™ Edge E84 MCU, covering audio, sensor hub, graphics, external memories, low power, and machine learning.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="pse84-technical-intro-features-training-manual-ch2-audio.html">
+      
+      
+        <link rel="next" href="pse84-technical-intro-features-training-manual-ch4-graphics.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter 3: Sensor Hub - PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-3-sensor-hub-pending-update" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-header__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3: Sensor Hub
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-nav__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intended-audience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intended audience
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-sensor-hub-imu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Sensor hub IMU
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Memories (SMIF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A: Creating an application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-b.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B: KIT_PSE84_EVAL details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-3-sensor-hub-pending-update">Chapter 3: Sensor Hub (pending update)<a class="headerlink" href="#chapter-3-sensor-hub-pending-update" title="Permanent link">&para;</a></h1>
+<h3 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h3>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>This document is the training manual for the technical introduction to PSOC™ Edge E84 features. This manual helps in getting started with different applications leveraging key features for PSOC™ Edge, using ModusToolbox™ software.</p>
+<p>The training is divided into multiple chapters covering topics like audio, graphics, machine learning, among others.</p>
+<p>Chapter 3 discusses PSOC™ Edge’s sensor hub features.</p>
+<h2 id="intended-audience">Intended audience<a class="headerlink" href="#intended-audience" title="Permanent link">&para;</a></h2>
+<p>The document is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides detailed instructions to create, configure, build, and run several application code examples on the PSOC™ Edge E84 MCU.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>See the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html#prerequisites"><strong>Prerequisites</strong> section</a> in the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html"><strong>Chapter 1 training manual</strong></a>. for a complete list of prerequisites and development tools.</p>
+<h2 id="code-example-sensor-hub-imu">Code example: Sensor hub IMU<a class="headerlink" href="#code-example-sensor-hub-imu" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>This code example explains how to collect raw data from onboard sensors on a PSOC™ Edge E84 evaluation kit (EVK). The program uses the Arm® Cortex®‑M33 CPU (CM33) to gather data at a rate of 100 Hz and then transmit it via UART to an external device. With this example, you can quickly get started with sensor hub data acquisition and gain insight into how to collect and process data from various sensors in real‑time.</p>
+<p>The user may optionally enable sensor fusion functionality for fusing the 6-axis sensor data using BSXlite sensor fusion library to compute the Euler angles and Quaternion vectors. With this extended use case, users can gain insight into how to process and fuse data from accelerometer and gyroscope sensors in real-time.</p>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>In this code example, resource initialization is performed by the CM33 non-secure (CM33_NS) code. It configures the system clocks, pins, clock-to-peripheral connections, and other platform resources. It then enables the Arm® Cortex®‑M55 CPU (CM55) using the Cy_SysEnableCM55() function. The CM55 is then put into its CPU Deep Sleep power mode.</p>
+<p>The <strong>BMI270</strong> motion sensor is a low-power device that provides 3-axis accelerometer and 3-axis gyroscope measurements. This sensor is located on the EVK baseboard. The PSOC™ Edge E84 MCU uses I2C to communicate with the sensor and then converts the data into metric units. After conversion, the data is sent to UART. To interface with the BMI270 motion sensor, the PSOC™ Edge E84 MCU uses the BMI270-Sensor-API from Bosch Sensortec.</p>
+<p>In the CM33 non-secure application, the clocks and system resources are initialized by the BSP initialization function. The retarget-io middleware is configured to use the debug UART, and the user LED is initialized. The debug UART prints a “Sensor Hub Data Acquisition” message on a terminal emulator. The on-board KitProg3 acts as a USB-UART bridge to create a virtual COM port.</p>
+<p>In the second part of this lab, the BSXlite sensor fusion library is integrated to show how to fuse the data from the accelerometer and gyroscope to compute Euler angles and Quaternion vectors.</p>
+<p><strong>Quaternions vectors</strong> are a more robust way to represent orientation. They use a four-dimensional unit vector to represent rotations in 3D space, and they do not suffer from gimbal lock. They are also more computationally efficient than Euler angles because they do not require trigonometric functions like sine and cosine.</p>
+<p><strong>Euler angles</strong> represent the orientation of an object in 3D space as a combination of three rotations around the X, Y, and Z axes. While they are easy to understand and interpret, they suffer from a problem called "gimbal lock" where certain configurations can cause the calculation to break down.</p>
+<h3 id="flow-chart">Flow chart<a class="headerlink" href="#flow-chart" title="Permanent link">&para;</a></h3>
+<p>This following flow chart explains the code flow of this code example:</p>
+<ol>
+<li>Start</li>
+<li>Initialize clocks and system resources in CM33_S</li>
+<li>Pass control to CM33_NS</li>
+<li>Enable CM55 CPU</li>
+<li>Start FreeRTOS Scheduler</li>
+<li>Put CM55 CPU into its CPU Deep Sleep power mode</li>
+<li>Initialize board and peripherals</li>
+<li>Create sensor hub data acquisition task</li>
+</ol>
+<h3 id="hardware-overview">Hardware overview<a class="headerlink" href="#hardware-overview" title="Permanent link">&para;</a></h3>
+<ul>
+<li>UART pins:</li>
+<li>P6_7 (UART_TX)</li>
+<li>P6_5 (UART_RX)</li>
+<li>I2C:</li>
+<li>P8_1 (SDA)</li>
+<li>P8_0 (SCL)</li>
+</ul>
+<blockquote>
+<p>[!NOTE] This example requires BOOT SW in ON position.</p>
+</blockquote>
+<p>See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</p>
+<p><img src="assets/images/ch3_image_001.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Sensor Hub IMU</strong> application under the <strong>Sensing</strong> section.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+<p><img src="assets/images/ch3_image_002.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li><strong>Note</strong>: The following figure shows the key files and folders in this application</li>
+</ol>
+<p><img src="assets/images/ch3_image_003.png" alt="Figure" style="width:369px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li><code>mtb_shared</code>: The mtb_shared directory is a folder that contains libraries that can be shared across projects in the workspace
+   Observe that the project includes libraries to access the BMI270 IMU. These libraries can be included in other projects using the IMU.</li>
+<li><code>bsps/TARGET_APP_KIT_PSE84_EVAL_EPC2</code> folder: The files provided by the board support package (BSP) are present here and are listed under the TARGET_APP_KIT_PSE84_EVAL_EPC2 sub-folders. All the input files for the device and peripheral configurators are in the “config” folder inside the TARGET_APP_KIT_PSE84_EVAL_EPC2 folder</li>
+</ol>
+<p>The “GeneratedSource” folder for the BSP contains the files that are generated by the configurators and are prefixed with cycfg_. These files contain the design configurations as defined by the BSP. From ModusToolbox™ 3.x or later, you can directly customize BSP configurator files for the application, rather than overriding the default files with custom files, since BSPs are completely owned by the application.
+   The TARGET_APP_KIT_PSE84_EVAL_EPC2 folder also contains the linker scripts and the start-up code for the PSOC™ Edge E84 MCU used on the board.</p>
+<ol start="5">
+<li><code>components/COMPONENT_BSXLITE</code>: This directory contains files to be used with the sensor fusion library, which will be added in the second part of this training</li>
+<li><strong>deps</strong>: The deps folder is short for dependencies and contains the <code>.mtb</code> files for the application's direct dependencies. The <code>.mtb</code> files include a link to the library repository and the release tag that needs to be cloned for the application</li>
+<li><code>proj_cm33_ns/FreeRTOSConfig.h</code>: The FreeRTOSConfig.h file is a configuration file that customizes the FreeRTOS kernel. It specifies application-specific configuration settings for the kernel and configures the FreeRTOS source code used in a project. A FreeRTOS application must have a FreeRTOSConfig.h header file in its pre-processor include path</li>
+<li><code>proj_cm33_ns/main.c</code>: This file contains the logic for the main function. See Flow chart</li>
+<li><code>proj_cm33_ns/retarget_io_init.c, .h</code>: These files initialize the retarget-io middleware to use the debug UART port</li>
+<li><code>proj_cm33_ns/sensor_hub_daq_task.c, .h</code>: The .c file contains the function that initializes the I2C and BMI270 sensor, reads the sensor values, and prints them on the UART terminal
+    The .h file contains the macros that configures sensor hub data acquisition task priority, stack size and delay for the sensor hub task.</li>
+<li>
+<p><code>proj_cm33_ns/Makefile</code>: The makefile enables required components such as FREERTOS and RTOS_AWARE. It includes:</p>
+<ul>
+<li>Variables used to specify flags and pre-build and post-build commands.</li>
+<li>Path information for source code discovery, shared repo location, and path to the compiler</li>
+<li>The <code>common.mk</code> file for the application</li>
+<li>Path information to the <code>start.mk</code> file in the installation tools directory.</li>
+</ul>
+</li>
+<li>
+<p><strong>common.mk</strong>: This makefile is shared across all the projects. It enables a component to include configuration in all three projects</p>
+</li>
+<li>Build and program the application</li>
+</ol>
+<h4 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h4>
+<p>After programming, the application automatically starts.</p>
+<p>A welcome message should be displayed, followed by accelerometer, gyroscope, and orientation data printed at a rate of 100 Hz.</p>
+<p><img src="assets/images/ch3_image_004.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>Notice that the data from the accelerometer and gyroscope changes as you move the kit. The sensors measure motion and orientation, so any movement or change in the device's orientation affects their output.</p>
+<h3 id="modify-application-read-temperature">Modify application – read temperature<a class="headerlink" href="#modify-application-read-temperature" title="Permanent link">&para;</a></h3>
+<p>As an exercise, you may extend this application and use the BMI270 sensor to read and display the temperature data in degrees celsius.</p>
+<h4 id="hints-for-the-advanced-modification">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification" title="Permanent link">&para;</a></h4>
+<ul>
+<li>ModusToolbox™ includes a library supporting BMI270</li>
+<li>Use available APIs to gather and process data in the sensor hub task</li>
+</ul>
+<h4 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>[!NOTE] The solution is also available in the included source folder.</p>
+</blockquote>
+<ol>
+<li>Declare the variables needed to store relevant data in <code>cm33_ns/sensor_hub_daq_task.c</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Global Variables */</span>
+<span class="k">static</span><span class="w"> </span><span class="n">mtb_hal_i2c_t</span><span class="w"> </span><span class="n">CYBSP_I2C_CONTROLLER_hal_obj</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">cy_stc_scb_i2c_context_t</span><span class="w"> </span><span class="n">CYBSP_I2C_CONTROLLER_context</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">mtb_bmi270_data_t</span><span class="w"> </span><span class="n">bmi270_data</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">mtb_bmi270_t</span><span class="w"> </span><span class="n">bmi270</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">cy_en_scb_i2c_status_t</span><span class="w"> </span><span class="n">initStatus</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">cy_rslt_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+
+<span class="cm">/* To store the temperature data */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">temp_data_float</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">temp_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+<ol start="2">
+<li>Observe the BMI270 API guide available <a href="https://github.com/Infineon/sensor-motion-bmi270/blob/master/api_reference.md">here</a>. The function mtb_bmi270_read_temp reads temperature data</li>
+<li>Add code to fetch and process the data from the temperature sensor in the sensor_hub_daq_task() function:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Gyroscope: </span><span class="se">\n\r</span><span class="s">x:%9.6f, y:%9.6f, z:%9.6f </span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">z</span><span class="p">);</span>
+
+<span class="cm">/* Advanced Modification to get temperature data Start */</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mtb_bmi270_read_temp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bmi270</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">temp_data</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CY_RSLT_SUCCESS</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">handle_app_error</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="n">temp_data_float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)((((</span><span class="kt">float</span><span class="p">)((</span><span class="kt">int16_t</span><span class="p">)</span><span class="n">temp_data</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+<span class="w">                  </span><span class="mf">512.0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">23.0</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Temperature = %2.2f Degree Celsius </span><span class="se">\r\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">temp_data_float</span><span class="p">);</span>
+<span class="cm">/* Advanced Modification to get temperature data End */</span>
+</code></pre></div>
+<ol start="4">
+<li>Two new lines were added to the debug console, so the ANSI escape sequence must also be updated. Modify the following code:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/* ANSI ESC sequence to get the cursor back to the start. */</span>
+<span class="o">-</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[7A</span><span class="se">\x1b</span><span class="s">[42D&quot;</span><span class="p">);</span>
+<span class="o">+</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[9A</span><span class="se">\x1b</span><span class="s">[42D&quot;</span><span class="p">);</span>
+</code></pre></div>
+<ol start="5">
+<li>Build, program, and run the application</li>
+</ol>
+<p>You should observe the temperature information.</p>
+<p><img src="assets/images/ch3_image_005.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-application-add-sensor-fusion">Modify application – add sensor fusion<a class="headerlink" href="#modify-application-add-sensor-fusion" title="Permanent link">&para;</a></h3>
+<p>IMU data is useful for a wide variety of applications, but it can become more powerful when fused to obtain additional information.</p>
+<p>As a second exercise, you can add the <a href="https://community.infineon.com/gfawx74859/attachments/gfawx74859/modustoolboxforum/8113/1/Integration_guide.pdf">Bosch BSXlite sensor fusion library</a> to the application and use it to obtain quaternion vectors.</p>
+<h4 id="hints-for-the-advanced-modification_1">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Download the <a href="https://community.infineon.com/gfawx74859/attachments/gfawx74859/modustoolboxforum/8113/1/Integration_guide.pdf">Bosch BSXlite sensor fusion library</a> and place it in the COMPONENT_BSXLITE folder.</li>
+<li>Enable sensor fusion in project configuration files.</li>
+</ul>
+<h4 id="solution_1">Solution<a class="headerlink" href="#solution_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>[!NOTE] The solution is also available in the included source folder.</p>
+</blockquote>
+<ol>
+<li>Download the <a href="https://community.infineon.com/gfawx74859/attachments/gfawx74859/modustoolboxforum/8113/1/Integration_guide.pdf">Bosch BSXlite sensor fusion library</a></li>
+</ol>
+<p>Enter the requested details on the website, read and agree to the license terms and proceed to download and unzip the library. Note that the BSXlite library for CM33 CPU is only available for GCC_ARM toolchain. The fusion functionality is therefore not supported by other toolchains.</p>
+<ol start="2">
+<li>Copy the following files from the unzipped folder to the <code>COMPONENT_BSXLITE</code> folder at the root of the project</li>
+</ol>
+<ul>
+<li><code>./genericbsxlite_v1-0-2/[Generic]BSXlite_v1.0.2/lib/GCC_OUT/libalgobsxm33/libalgobsx.a</code></li>
+<li><code>./genericbsxlite_v1-0-2/[Generic]BSXlite_v1.0.2/bsxlite_interface.h</code></li>
+</ul>
+<p><img src="assets/images/ch3_image_006.png" alt="Figure" style="width:337px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Open <code>common.mk</code> and modify <code>CONFIG_APP_MODE</code> to <code>ENABLE_FUSION</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span># Ex:
+<span class="w"> </span># CONFIG_APP_MODE = ENABLE_ACQUISITION
+<span class="w"> </span># or
+<span class="w"> </span># CONFIG_APP_MODE = ENABLE_FUSION
+<span class="w"> </span>#
+<span class="gd">-CONFIG_APP_MODE = ENABLE_ACQUISITION</span>
+<span class="gi">+CONFIG_APP_MODE = ENABLE_FUSION</span>
+</code></pre></div>
+<ol start="4">
+<li>Build and reprogram the device. You should observe the quaternion vectors in the terminal</li>
+</ol>
+<p><img src="assets/images/ch3_image_007.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Disconnect the serial terminal and go to <a href="https://adafruit.github.io/Adafruit_WebSerial_3DModelViewer/">Adafruit Web Serial 3D Model Viewer</a>. Select the corresponding port at 115,200 bps and enable <strong>Quaternions</strong></li>
+<li>Rotate the kit to observe the 3D image in motion, illustrating the sensor fusion use case</li>
+</ol>
+<p><img src="assets/images/ch3_image_008.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-application-enable-euler-angles">Modify application – enable Euler angles<a class="headerlink" href="#modify-application-enable-euler-angles" title="Permanent link">&para;</a></h3>
+<p>The previous section showed how to use the sensor fusion library to calculate quaternion vectors, which are a robust way to represent rotations in 3D space, but the library can also be used to calculate Euler angles.</p>
+<p>As a third exercise, modify the sensor fusion application to obtain Euler angles instead of quaternion vectors.</p>
+<h4 id="hints-for-the-advanced-modification_2">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The sensor fusion application is available in <code>sensor_hub_fusion.c/h</code>.</li>
+<li>The BSXLite library outputs Euler angles in radians per second; however, the 3D model viewer expects these values to be in degrees per second.</li>
+</ul>
+<h4 id="solution_2">Solution<a class="headerlink" href="#solution_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>[!NOTE] The solution is also available in the included source folder.</p>
+</blockquote>
+<ol>
+<li>Open <code>COMPONENT_BSXLITE/source/sensor_hub_fusion.c</code> and set <code>output_mode</code> as <code>OUTPUT_MODE_EULER</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="gd">-static const output_mode_t output_mode = OUTPUT_MODE_QUATERNION;</span>
+<span class="gi">+static const output_mode_t output_mode = OUTPUT_MODE_EULER;</span>
+</code></pre></div>
+<ol start="2">
+<li>The BSXLite library outputs Euler angles in radians per second; however, the 3D model viewer expects these values to be in degrees per second. To accommodate this, convert the Euler angles by multiplying them by a factor of 57.2958 (1 Rad × 180/π = 57.2958 Deg). To apply this conversion, make the following change in the same <code>sensor_hub_fusion.c</code> file:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>case OUTPUT_MODE_EULER:
+<span class="w"> </span>    printf(&quot;Orientation: %f, %f, %f, %f\r\n&quot;,
+<span class="gd">-           bsxlite_fusion_out.orientation.heading,</span>
+<span class="gd">-           bsxlite_fusion_out.orientation.pitch,</span>
+<span class="gd">-           bsxlite_fusion_out.orientation.roll,</span>
+<span class="gd">-           bsxlite_fusion_out.orientation.yaw);</span>
+<span class="gi">+           bsxlite_fusion_out.orientation.heading * 57.2958,</span>
+<span class="gi">+           bsxlite_fusion_out.orientation.pitch * 57.2958,</span>
+<span class="gi">+           bsxlite_fusion_out.orientation.roll * 57.2958,</span>
+<span class="gi">+           bsxlite_fusion_out.orientation.yaw * 57.2958);</span>
+<span class="w"> </span>    break;
+</code></pre></div>
+<ol start="3">
+<li>Re-build, and program the updated application</li>
+<li>In the 3D model viewer, select the Euler angles option and rotate your kit to observe a phenomenon known as gimbal lock</li>
+</ol>
+<p><img src="assets/images/ch3_image_009.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol>
+<li><strong>Note</strong>: <strong>Gimbal</strong> lock occurs when the Euler angles approach a singular configuration, typically near 90 degrees, causing the representation of 3D rotations to become unstable and lose a degree of freedom. This results in an incorrect visualization of the sensor data. Read more about gimble lock here</li>
+</ol>
+<p><strong>Quaternion</strong> vectors do not suffer from gimbal lock, providing a more robust and accurate representation of 3D rotations. By using Quaternion vectors, you can avoid the issues associated with gimbal lock and ensure a more reliable visualization of your sensor data.</p>
+<p><img src="assets/images/ch3_image_010.png" alt="A close up of two white objects" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>This exercise achieved three milestones. Firstly, it successfully created a PSOC™ Edge E84 MCU sensor hub application using ModusToolbox™, acquiring data from the sensor.</p>
+<p>Secondly, the application's capabilities were expanded by fetching and printing the temperature data from the same sensor.</p>
+<p>Thirdly, the application's capabilities were further expanded by adding support for the BSXlite sensor fusion library to calculate quaternion vectors and Euler angles.</p>
+<h3 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*A</td>
+<td>2026-09-26</td>
+<td>Updated to latest tools and using Visual Studio Code.</td>
+</tr>
+<tr>
+<td></td>
+<td>2025-01-15</td>
+<td>Initial release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSOC&trade;, is a trademark of Infineon Technologies. Any references to PSOC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 2: Audio">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 2: Audio
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 4: Graphics">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 4: Graphics
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

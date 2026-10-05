@@ -1,0 +1,1276 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual introducing key features of the PSOC™ Edge E84 MCU, covering audio, sensor hub, graphics, external memories, low power, and machine learning.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html">
+      
+      
+        <link rel="next" href="pse84-technical-intro-features-training-manual-ch5-smif.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter 4: Graphics - PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-4-graphics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-header__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4: Graphics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-nav__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intended-audience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intended audience
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-graphics-using-vglite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Graphics using VGLite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-graphics-lvgl-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Graphics LVGL demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Memories (SMIF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A: Creating an application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-b.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B: KIT_PSE84_EVAL details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-4-graphics">Chapter 4: Graphics<a class="headerlink" href="#chapter-4-graphics" title="Permanent link">&para;</a></h1>
+<h3 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h3>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>This document is the training manual for the technical introduction to PSOC™ Edge E84 features. This manual helps in getting started with different applications leveraging key features for PSOC™ Edge, using ModusToolbox™ software.</p>
+<p>The training is divided into multiple chapters covering topics like audio, graphics, machine learning, among others.</p>
+<p>Chapter 4 discusses PSOC™ Edge’s Graphics features.</p>
+<h2 id="intended-audience">Intended audience<a class="headerlink" href="#intended-audience" title="Permanent link">&para;</a></h2>
+<p>The document is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides detailed instructions to create, configure, build, and run application code examples on the PSOC™ Edge E84 MCU.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>See the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html#prerequisites"><strong>Prerequisites</strong> section</a> in the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html"><strong>Chapter 1 training manual</strong></a>. for a complete list of prerequisites and development tools.</p>
+<h3 id="tools-for-graphics-labs">Tools for graphics labs<a class="headerlink" href="#tools-for-graphics-labs" title="Permanent link">&para;</a></h3>
+<p>Note that graphics labs utilize the following additional tools:</p>
+<ul>
+<li><a href="https://www.envox.eu/studio/studio-introduction/">EEZ-Studio</a> v0.29.0 or later<ul>
+<li>This tool is used in Code example: Graphics LVGL demo. It is not required to run the default code example, but it’s used to build a custom LVGL user interface (UI).</li>
+</ul>
+</li>
+<li><a href="https://www.python.org/downloads/">Python 3</a>, including “pypng” and “lz4” Python modules:
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pypng</span><span class="o">==</span><span class="mf">0.20220715.0</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">lz4</span>
+</code></pre></div></li>
+<li><a href="https://pngquant.org/">Pngquant</a> v2.17.0 or later<ul>
+<li>Download binaries, unzip, and add folder to path environment variable</li>
+</ul>
+</li>
+</ul>
+<h2 id="code-example-graphics-using-vglite">Code example: Graphics using VGLite<a class="headerlink" href="#code-example-graphics-using-vglite" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates the utilization of Vivante® platform-independent VGLite graphics API to carry out hardware-accelerated 2D vector drawing operations and render the generated image on a 4.3” 800x480 display. The display is connected to the PSOC™ Edge E84 MCU via the MIPI Display Serial Interface (DSI). The code runs in a FreeRTOS environment.</p>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>Resource initialization for this example is performed by this CM33 non-secure project. It configures the system clocks, pins, the clock to peripheral connections, and other platform resources. It then enables the CM55 core using the Cy_SysEnableCM55() function and allows the Idle task to put CM33 in DeepSleep mode.</p>
+<p>In the CM55 application, the clocks and system resources are initialized by the BSP initialization function. The retarget-io middleware is configured to use the debug UART. The debug UART prints a message as shown in the Terminal output on program startup. The onboard KitProg3 acts as the USB-UART bridge to create the virtual COM port.</p>
+<p>The CM55 application drives the LCD and renders the image using the PSOC™ Edge graphics subsystem, which houses an independent 2.5D GPU, a display controller (DC), and a MIPI DSI host controller with a MIPI D-PHY physical layer interface.</p>
+<p>The GPU supports vector graphics (drawing circles, rectangles, quadratic curves) and font support. This code example implements operations like rotate/scale, color fill, and color conversion. After the GPU renders the frames, they are transferred to the MIPI DSI host controller via the DC and displayed on the LCD.</p>
+<h3 id="hardware-setup">Hardware setup<a class="headerlink" href="#hardware-setup" title="Permanent link">&para;</a></h3>
+<p>This example uses the 4.3” Raspberry Pi DSI 800x480 display included with the PSOC™ Edge E84 EVK. To use a different display, please see the code example README.</p>
+<ul>
+<li>Set BOOT SW in ON position</li>
+</ul>
+<p><img src="assets/images/ch4_image_001.png" alt="Figure" style="width:1024px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="flow-chart">Flow chart<a class="headerlink" href="#flow-chart" title="Permanent link">&para;</a></h3>
+<p>The following flow chart shows the complete code flow of this code example.</p>
+<p><img src="assets/images/ch4_image_002.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation">Project creation<a class="headerlink" href="#project-creation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Graphics using VGLite API</strong> application under the <strong>Graphics</strong> section.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+<p><img src="assets/images/ch4_image_003.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" />
+2. Build and program the application
+3. [INFO] No modifications are needed to execute the default code example; however, some important files for this project are highlighted as shown in the following figure:
+<img src="assets/images/ch4_image_004.png" alt="A screenshot of a computer program" style="width:308px; height:auto; display:block; margin:0 auto;" /></p>
+<ul>
+<li><code>proj_cm55/infineon_logo_paths.h</code>: This file defines the vector path data for the Infineon logo, which is rendered using the <code>vg_lite_draw</code> API. The path data is manually extracted from <code>images/infineon_logo.svg</code> by mapping the vector path opcodes required for plotting. This vector path is used in the <code>default_draw</code> function to animate the logo with zoom-in/out and rotation effects, and it is also utilized in the blit color rendering demo, where the rectangle containing the logo (rendered via <code>vg_lite_draw</code>) is processed using the <code>vg_lite_blit_rect</code> API</li>
+<li><code>proj_cm55/infineon_logo.h</code>: This file contains the C array holding the pixel data for the Infineon logo image. It is used in the Pattern Fill Demonstration to render the Infineon logo within four different shapes</li>
+<li><code>icon/*.h</code>: These header files define the C arrays that hold pixel data for the four icons. They are used in the filter demo, where the VG_LITE_FILTER_LINEAR filter is applied to them</li>
+<li><strong>Application code</strong>: The CM55 CPU utilizes the graphics subsystem and VGLite APIs to demonstrate five different use cases. The main function (<code>proj_cm55/main.c</code>) first initializes the BSP. It then performs retarget-io initialization to use the debug UART port and creates an event_queue to receive notifications of selected demonstrations. After this, it creates the <code>cm55_gfx_task</code> and <code>uart_cli_handler</code> FreeRTOS tasks:<ul>
+<li><code>cm55_gfx_task</code>: This task is responsible for initializing the graphics subsystem. It initializes the LCD panel through the I2C interface, initializes the VGLite engine, creates buffers, and configures the identity matrix. After initialization, it enters a loop where it checks the <code>event_queue</code>. If no events are received, it calls the <code>default_draw</code> function to display the Infineon logo with zoom and rotation effects as the default screen. When a demo number is received, the corresponding demo function is executed repeatedly until the <code>cancel_requested</code> flag is set. Once cancellation is triggered, the task exits the demo loop and returns to the main loop, continuing to check the event_queue and call <code>default_draw</code>. It also logs FPS and CPU usage to the UART terminal throughout execution.</li>
+<li><code>uart_cli_handler</code>: This task manages user interaction through the UART terminal. It first displays the header "PSOC™ Edge MCU: Graphics using VGLite API" and lists five GPU operations to be demonstrated. When the user selects one of the listed operations by entering its corresponding number (1 to 5), it prints information about the selected operation and sends the operation serial number to <code>cm55_gfx_task</code> via the <code>event_queue</code>. To exit a running GPU operation and return to the default display, the user can press Ctrl+C or Enter. When this occurs, the task sets the <code>cancel_requested</code> flag to notify <code>cm55_gfx_task</code> to stop the active operation and resume the default loop.</li>
+</ul>
+</li>
+<li><code>bsps/TARGET_APP_KIT_PSE84_EVAL_EPC2/config/design.modus</code>: This file stores Device Configurator information, display parameters, and memory configuration, among other configurations</li>
+</ul>
+<ol start="2">
+<li>[INFO] To observe the graphics support configuration, open the <strong>Device Configurator</strong> tool by clicking the <strong>Configure Device</strong> button in the <strong>ModusToolbox™ for VS Code</strong> extension. 
+   Navigate to the <strong>Peripherals</strong> tab and check the <strong>Graphics</strong> option under <strong>System</strong>.
+   * Observe display parameters such as <strong>Display Type</strong>, <strong>Width</strong>, <strong>Height</strong>, <strong>HSYNC</strong>, and <strong>VSYNC</strong>. These parameters can be adjusted for other types of displays
+<img src="assets/images/ch4_image_005.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" />
+* Observe the reference clock for the MIPI DPHY PLL to 24 MHz
+<img src="assets/images/ch4_image_006.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" />
+* Device Configurator  also defines the custom memory map for system SRAM with respect to the placement of the graphics frame buffer and other memory regions
+<img src="assets/images/ch4_image_007.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+</ol>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p>The application starts automatically after programming.</p>
+<p>You should observe a message in the terminal, followed by a menu, frames-per-second information, and CPU usage:
+<img src="assets/images/ch4_lab1_output1.gif" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>You should also observe that the display shows an animated logo.
+<img src="assets/images/ch4_lab1_output2.gif" alt="A rectangular electronic device with a white screen" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>In addition to the logo display, the example allows you to run different demos:</p>
+<ul>
+<li>Fill rules<ul>
+<li>The display shows two shapes on the left side with the VG_LITE_FILL_EVEN_ODD filling rule and two shapes on the right side with the VG_LITE_FILL_NON_ZERO filling rule.</li>
+</ul>
+</li>
+<li>Alpha blending<ul>
+<li>The display shows two shapes on the left side with the VG_LITE_BLEND_SRC_OVER blending mode and two shapes on the right side with the VG_LITE_BLEND_MULTIPLY blending mode.</li>
+</ul>
+</li>
+<li>Blit color rendering<ul>
+<li>The display shows two Infineon logos rectangularly blitted onto a TEAL_COLOR frame.</li>
+</ul>
+</li>
+<li>Pattern fill<ul>
+<li>The display shows the Infineon logo on four different shapes using the vg_lite_draw_pattern.</li>
+</ul>
+</li>
+<li>UI/filter demo<ul>
+<li>The display shows four different icons and a highlighted rectangle moving over all four icons with VG_LITE_FILTER_LINEAR.</li>
+</ul>
+</li>
+</ul>
+<p>Input the corresponding number in the terminal to run each demo and press <strong>Ctrl+C</strong> to go back to the main menu.</p>
+<h3 id="modify-the-application">Modify the application<a class="headerlink" href="#modify-the-application" title="Permanent link">&para;</a></h3>
+<h4 id="render-a-different-image">Render a different image<a class="headerlink" href="#render-a-different-image" title="Permanent link">&para;</a></h4>
+<p>For this first modification, render a different image instead of the Infineon logo.</p>
+<h4 id="hints-for-the-advanced-modification">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A sample image <code>tiger_paths.h</code> is available in the included source folder</li>
+<li>Adjust image to display properly</li>
+</ul>
+<h4 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Copy the <code>tiger_paths.h</code> file from the included source files at <code>~/Graphics_using_VGLite/Render Different image/proj_cm55</code> and place it in the proj_cm55 directory</li>
+</ol>
+<p><img src="assets/images/ch4_image_010.png" alt="A screenshot of a computer program" style="width:323px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Open <code>proj_cm55/vglite_demos.c</code>, and replace <code>infineon_logo_paths.h</code> by the new <code>tiger_paths.h</code>. The original and updated lines are shown in red and green respectively below. </li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>#include &quot;icon/vision.h&quot;
+<span class="w"> </span>#include &quot;icon/wearable.h&quot;
+<span class="gd">-#include &quot;infineon_logo_paths.h&quot;</span>
+<span class="gi">+#include &quot;tiger_paths.h&quot;</span>
+<span class="w"> </span>#include &quot;infineon_logo.h&quot;
+<span class="w"> </span>#include &quot;shape_paths.h&quot;
+<span class="w"> </span>#include &quot;retarget_io_init.h&quot;
+</code></pre></div>
+<ol start="3">
+<li>
+<p>The <code>tiger_paths.h</code> file includes a <code>color_data</code> array which conflicts with current definitions in <code>vglite_demos.c</code>
+   Remove the <code>color_data</code> definition in <code>vglite_demos.c</code>:
+<div class="highlight"><pre><span></span><code><span class="w"> </span>/* Global Variables */
+<span class="w"> </span>bool zoom_out = false;
+<span class="w"> </span>int scale_count = RESET_VAL;
+<span class="gd">-uint32_t color_data[] =</span>
+<span class="gd">-{</span>
+<span class="gd">-    0xff4018ec, /* path_data0 : blue */</span>
+<span class="gd">-    0xffb36600, /* path_data1 : red */</span>
+<span class="gd">-};</span>
+<span class="w"> </span>vg_lite_buffer_t image_buffer;
+</code></pre></div></p>
+</li>
+<li>
+<p>The tiger image has a different size compared to the Infineon logo. Locate the location of the <code>load_images()</code>  call in <code>proj_cm55/main.c</code> and update the code snippet shown below. Note that the updated code snippet is shown to allow copy-pasting.
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">vg_lite_identity</span><span class="p">(</span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">load_images</span><span class="p">())</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Failed to load icons</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* Translate the matrix to the center */</span>
+<span class="w">            </span><span class="n">vg_lite_translate</span><span class="p">(</span><span class="n">DISP_W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DISP_W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1024.0f</span><span class="p">,</span>
+<span class="w">                            </span><span class="n">DISP_H</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DISP_H</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">600.0f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">);</span>
+<span class="w">            </span><span class="cm">/* Set the default scale of the matrix */</span>
+<span class="w">            </span><span class="n">vg_lite_scale</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">matrix</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Build and program the application code
+   You should observe the tiger image animated on the display.
+<img src="assets/images/ch4_lab1_mod1_output.gif" alt="A tiger with its mouth open" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+</ol>
+<h4 id="draw-polygons">Draw polygons<a class="headerlink" href="#draw-polygons" title="Permanent link">&para;</a></h4>
+<p>For this second modification, explore how to use the <code>vg_lite_draw</code> function to draw polygons on the screen.</p>
+<p>Modify the <strong>Fill rules</strong> demo to draw a cross instead of one of the default squares.</p>
+<h4 id="hints-for-the-advanced-modification_1">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The two squares are drawn in <code>fill_rules_draw</code> inside <code>vglite_demos.c</code></li>
+<li>The function <code>vg_lite_draw</code> draws the polygon using a set of coordinates defined in <code>shape_paths.h</code></li>
+<li>The figure below shows the coordinates to draw a rectangle</li>
+</ul>
+<p><img src="assets/images/ch4_image_012.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h4 id="solution_1">Solution<a class="headerlink" href="#solution_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p><strong>Note</strong>: Open <code>proj_cm55/vglite_demos.c</code> and observe that the squares are drawn by <code>vg_lite_draw</code> and located by <code>vg_lite_translate</code>
+<img src="assets/images/ch4_image_013.png" alt="A computer screen with white and orange text" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>Replace the definition of <code>overlapping_squares</code> in <code>shape_paths.h</code>:
+<div class="highlight"><pre><span></span><code><span class="kt">int32_t</span><span class="w"> </span><span class="n">overlapping_squares</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Cross */</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">158</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">178</span><span class="p">,</span><span class="w"> </span><span class="mi">138</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">158</span><span class="p">,</span><span class="w"> </span><span class="mi">138</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">158</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">218</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span>
+<span class="w">    </span><span class="cm">/* Second square - Clockwise (shifted) */</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">183</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">283</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">283</span><span class="p">,</span><span class="w"> </span><span class="mi">203</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">183</span><span class="p">,</span><span class="w"> </span><span class="mi">203</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">183</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cm">/* End of path */</span>
+<span class="p">};</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Rebuild and reprogram the device
+   Press <strong>1</strong> in the terminal to run the <strong>Fill rules</strong> demo and observe the changes.</p>
+</li>
+</ol>
+<p>Try drawing other shapes or playing with the parameters of <code>vg_lite_draw</code> to test other features.
+<img src="assets/images/ch4_lab1_mod2_output.gif" alt="A tiger with its mouth open" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>This exercise successfully created a PSOC™ Edge E84 MCU graphics application using ModusToolbox™. It configured the graphics subsystem and the display and touch driver, and called VGLite API functions to draw using the GPU in the PSOC™ Edge E84 MCU.</p>
+<h2 id="code-example-graphics-lvgl-demo">Code example: Graphics LVGL demo<a class="headerlink" href="#code-example-graphics-lvgl-demo" title="Permanent link">&para;</a></h2>
+<h3 id="objective_1">Objective<a class="headerlink" href="#objective_1" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates displaying graphics on a 4.3” 800x480, or 10.1-inch or 7-inch 1024x600 TFT LCD display using the <strong>Light and Versatile Graphics Library (LVGL)</strong> on PSOC™ Edge E84 MCU. The display shows a music player application, which is listed as one of the standard demos on the <a href="https://lvgl.io/demos">LVGL page</a>. The display is connected to the PSOC™ Edge E84 MCU via the <strong>MIPI Display Serial Interface (DSI)</strong>. The code runs in a FreeRTOS environment.</p>
+<h3 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h3>
+<p>This code example performs the following major steps to display a GUI created using the LVGL library.</p>
+<p><img src="assets/images/ch4_image_014.png" alt="Figure" style="width:250px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="flow-chart_1">Flow chart<a class="headerlink" href="#flow-chart_1" title="Permanent link">&para;</a></h3>
+<p>The following flow chart explains the complete code flow of this code example.</p>
+<p><img src="assets/images/ch4_image_015.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation_1">Project creation<a class="headerlink" href="#project-creation_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Graphics LVGL Demo</strong> application under the <strong>Graphics</strong> section.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+<p><img src="assets/images/ch4_image_016.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" />
+2. Build and program the application
+3. [INFO] No modifications are needed to execute the default code example; however, some important files for this project are highlighted below:</p>
+<ul>
+<li>
+<p><em><code>lv_port_disp.c</code></em></p>
+<ul>
+<li>This file provides the implementation of a low-level display device driver for LVGL. It creates a new display device for LVGL with the given resolution, sets up the frame buffer for the display, initializes a custom callback to fetch the tick count, and provides functions for refreshing or updating the display.</li>
+<li>The file also contains implementations of functions required by LVGL to get information about the display and how to draw pixels on the screen, such as disp_flush(). The <em><code>disp_flush()</code></em> function is called by LVGL whenever a new frame is ready to be displayed, and it transfers the contents of the graphics frame buffer to the display controller.</li>
+<li>This file is typically customized to work with specific display hardware. It may require modification of certain constants or register settings to properly configure the display. The specific implementation may also depend on the type of display being used, such as a TFT or OLED display.</li>
+</ul>
+</li>
+<li>
+<p><em><code>lv_port_indev.c</code></em></p>
+<ul>
+<li>This file provides the implementation of a low-level input device driver for LVGL. It initializes the touch driver to the corresponding display panel using the I2C interface and handles user input such as touch or button presses. It provides functions that map input events to specific actions or GUI elements in your LVGL application.</li>
+<li>The file also contains implementations of functions required by LVGL to get information from the input device, such as touchpad_read(). The <em><code>touchpad_read()</code></em> function is called by LVGL to read input events from the input device and translate them into LVGL event types, such as LV_EVENT_PRESSED or LV_EVENT_RELEASED.</li>
+<li>This file is typically customized to work with a specific input device. It may require modification of certain constants or register settings to properly configure the input device. The specific implementation may also depend on the type of input device being used, such as a touch screen or physical buttons.</li>
+</ul>
+</li>
+<li>
+<p><em><code>lv_conf.h</code></em></p>
+<ul>
+<li>This is a configuration file for the LVGL graphics library. It allows you to customize various aspects of the library, such as the display driver, memory allocation, theme, font, and more.</li>
+<li>The file provides a list of preprocessor directives that can be used to enable or disable certain features of the library. By modifying the directives in this file, you can tailor LVGL to suit your specific needs and hardware platform. It is typically included in your project along with the LVGL library files.</li>
+</ul>
+</li>
+<li>
+<p><em><code>lv_draw_vg_lite.c, lv_draw_vg_lite_img.c</code></em></p>
+<ul>
+<li>These files provide implementation of LVGL's image related operations ported to the VGLite library to use GPU aided rendering.</li>
+</ul>
+</li>
+<li>
+<p><em><code>lv_vg_lite_utils.c</code></em></p>
+<ul>
+<li>This file provides an implementation for LVGL's utility APIs ported to the VGLite library.</li>
+</ul>
+</li>
+<li>
+<p><code>proj_cm55/main.c</code></p>
+<ul>
+<li>This file defines the <em><code>cm55_gfx_task</code></em> which initializes the graphics subsystem and configures the GPU and display controller interrupts. After that, the file initializes the display panel driver for the selected display.</li>
+<li>Once the panel is initialized, the required amount of memory is allocated for VGLite draw/blit functions to be consumed by the LVGL library.</li>
+<li>The <em><code>lv_init()</code></em> function is used to initialize LVGL and set up the essential components required for LVGL to work correctly.</li>
+<li>Low-level display and touch devices for LVGL are initialized using <em><code>lv_port_disp_init()</code></em> and <em><code>lv_port_indev_init()</code></em> functions respectively.</li>
+<li>The LVGL demo music player is displayed by calling the LVGL demo widget API <em><code>lv_demo_music()</code></em>.</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>[INFO] The libraries included in this example can also be observed by opening the <strong>Library Manager</strong> in the <strong>ModusToolbox™ for VS Code</strong> extension.
+   Observe the added libraries in proj_cm55 for LVGL and displays. Note that the Library Manager can also be used to add support for this display and LVGL to other applications.
+<img src="assets/images/ch4_image_017.png" alt="A screenshot of a computer program" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+</ol>
+<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<p>After programing is successful, open the serial terminal and set the serial port parameters to <strong>8N1</strong> and <strong>115200</strong> baud. Reset the EVK and observe that the terminal displays the header.</p>
+<p><img src="assets/images/ch4_image_018.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>Observe that the LCD displays a music player demo application as shown below. You can use the touch screen to perform various actions such as playing or pausing a track, changing to the next or previous track, and viewing the playlist. 
+Note that music is not played, only graphics actions are demonstrated in this code example.
+<img src="assets/images/ch4_lab2_output.gif" alt="A logo of a music player" style="width:490px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-the-application_1">Modify the application<a class="headerlink" href="#modify-the-application_1" title="Permanent link">&para;</a></h3>
+<h4 id="pre-built-lvgl-demos">Pre-built LVGL demos<a class="headerlink" href="#pre-built-lvgl-demos" title="Permanent link">&para;</a></h4>
+<p>For this first modification, try testing other pre-built LVGL demos, and enable CPU usage indicators.</p>
+<h4 id="hints-for-the-advanced-modification_2">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>LVGL demos and CPU usage indicators can be enabled in <code>lv_conf.h</code></li>
+<li>Make sure the application calls the correct <code>lv_demo</code> function</li>
+</ul>
+<h4 id="solution_2">Solution<a class="headerlink" href="#solution_2" title="Permanent link">&para;</a></h4>
+<ol>
+<li>To switch to other available LVGL demos, the corresponding <code>LV_USE_DEMO_&lt;demo_name&gt;</code> macro must be enabled in <code>proj_cm55\include\lv_conf.h</code>.
+   Enable <code>LV_USE_DEMO_WIDGETS</code> and note that <code>LV_USE_DEMO_BENCHMARK</code> is disabled,</li>
+</ol>
+<div class="highlight"><pre><span></span><code>/*===================
+<span class="w"> </span>* DEMO USAGE
+<span class="w"> </span>====================*/
+
+#if LV_BUILD_DEMOS
+<span class="w"> </span>   /** Show some widgets. This might be required to increase `LV_MEM_SIZE`. */
+#if LV_USE_DEMO_BENCHMARK
+<span class="w"> </span>   #define LV_USE_DEMO_WIDGETS 1
+#else
+<span class="gd">-    #define LV_USE_DEMO_WIDGETS 0</span>
+<span class="gi">+    #define LV_USE_DEMO_WIDGETS 1  </span>
+#endif
+</code></pre></div>
+<ol start="2">
+<li>The system monitor component <code>LV_USE_SYSMON</code> allows CPU usage metrics to be observed in the display. Enabled it in the same <code>lv_conf.h</code> file. </li>
+</ol>
+<div class="highlight"><pre><span></span><code>/*==================
+<span class="w"> </span>* OTHERS
+<span class="w"> </span>*==================*/
+/* Documentation for several of the below items can be found here: https://docs.lvgl.io/master/auxiliary-modules/index.html . */
+
+/** 1: Enable API to take snapshot for object */
+#define LV_USE_SNAPSHOT 0
+
+/** 1: Enable system monitor component */
+#if LV_USE_DEMO_BENCHMARK
+<span class="w"> </span>   #define LV_USE_SYSMON   1
+#else
+<span class="gd">-    #define LV_USE_SYSMON   0</span>
+<span class="gi">+    #define LV_USE_SYSMON   1</span>
+#endif
+</code></pre></div>
+<ol start="3">
+<li>Open <code>proj_cm55/main.c</code> and observe that the application calls <code>lv_demo_music</code> when <code>DEMO_BENCHMARK</code> is disabled, and <code>lv_demo_benchmark</code> when the macro is enabled. 
+   Modify the code to run <code>lv_demo_widgets</code> instead of the music demo.
+   Note that you can enable and run other LVGL demos in this way.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>#if LV_USE_DEMO_BENCHMARK
+<span class="w"> </span>           /* Register our end callback - LVGL calls it when all scenes finish.
+<span class="w"> </span>            * Touch is initialized there, so polling does not affect benchmark scores. */
+<span class="w"> </span>           lv_demo_benchmark_set_end_cb(benchmark_end_cb);
+
+<span class="w"> </span>           /* Run the Benchmark demo */
+<span class="w"> </span>           lv_demo_benchmark();
+#else
+<span class="w"> </span>           /* Initialize touch input. Skipped during benchmark to avoid the
+<span class="w"> </span>            * CPU overhead of polling-mode touch. */
+<span class="w"> </span>           lv_port_indev_init();
+
+<span class="w"> </span>           /* Run the Music demo */
+<span class="gd">-            lv_demo_music();</span>
+<span class="gi">+            lv_demo_widgets();  </span>
+#endif
+</code></pre></div>
+<ol start="4">
+<li>Rebuild and reprogram the application</li>
+<li>You should observe the widgets demo together with CPU metrics in the bottom left corner.
+<img src="assets/images/ch4_lab2_mod1_output.gif" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></li>
+</ol>
+<h4 id="custom-ui-using-eez-studio">Custom UI using <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a><a class="headerlink" href="#custom-ui-using-eez-studio" title="Permanent link">&para;</a></h4>
+<p>LVGL is a widely used graphics library supported by the open-source community and many third parties. In this exercise, generate a custom UI using the <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a> tool.</p>
+<h4 id="hints-for-the-advanced-modification_3">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Use <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a> to generate a new UI</li>
+<li>Add the generated UI files to the cm55 project</li>
+<li>Call the corresponding functions to initialize the custom UI and update it periodically</li>
+</ul>
+<h4 id="solution_3">Solution<a class="headerlink" href="#solution_3" title="Permanent link">&para;</a></h4>
+<ol>
+<li>If <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a> is not already installed, install it now.</li>
+<li>Open <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a> and click on <strong>Examples</strong>, select the <strong>Change Screen</strong> example under the LVGL category, select a <strong>name</strong>, add a <strong>location</strong>, and click <strong>Edit Project</strong></li>
+</ol>
+<p><img src="assets/images/ch4_image_022.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Click the <strong>Settings</strong> button</li>
+</ol>
+<p><img src="assets/images/ch4_image_023.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>In the <strong>General</strong> tab, confirm that the <strong>LVGL version</strong> is 9.5 since ModusToolbox™ 3.9 uses LVGL 9.5.0, and that the <strong>display resolution</strong> is 800x480, since the 4.3” display included with the PSOC™ Edge E84 kit is used</li>
+</ol>
+<p><img src="assets/images/ch4_image_024.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Go to the <strong>Build</strong> options and modify the <strong>LVGL include</strong> setting as <code>lvgl.h</code>, since the project is configuring a direct path to LVGL inside <code>mtb_shared</code>; and observe that the <strong>Destination folder</strong> is set to <code>src\ui</code> since this is where the output files will be generated</li>
+</ol>
+<p><img src="assets/images/ch4_image_025.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>Modify the default GUI. Make sure the <strong>Main page</strong> is selected, then open the <strong>Bitmaps</strong> panel on the right side, and click the <strong>plus (+) icon</strong> to add a bitmap</li>
+</ol>
+<p><img src="assets/images/ch4_image_026.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="7">
+<li>Click the image browse button, navigate to the lab source folder, and select the image located at <code>&lt;lab_source_folder&gt;\Graphics_LVGL_Demo\Custom UI using EEZStudio\PSE84.png</code>
+   Add a <strong>Name</strong>, and select <strong>Color format</strong> as RGB565, then click <strong>OK</strong>.
+   Feel free to add an image of your choice.</li>
+</ol>
+<p><img src="assets/images/ch4_image_027.png" alt="A screenshot of a chat box" style="width:498px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="8">
+<li>Drag-and-drop an <strong>Image widget</strong> from the <strong>Components Palette</strong> into the <strong>Main Screen</strong></li>
+</ol>
+<p>Then, go to the <strong>Properties</strong> and select the <strong>Image</strong> corresponding to the bitmap added in the previous step.</p>
+<p><img src="assets/images/ch4_image_028.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="9">
+<li>Adjust the label and image so that it fits properly in the page</li>
+<li>Test one of the widgets on <strong>Screen A</strong>
+    Go to the <strong>Screen A</strong> page and drag and drop an <strong>Arc widget</strong> from the <strong>Components Palette</strong>.
+    Feel free to try other widgets.</li>
+</ol>
+<p><img src="assets/images/ch4_image_029.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="11">
+<li>Save the project, click the <strong>Check</strong> button to validate the project, and then click the <strong>Build</strong> button to generate the output files<blockquote>
+<p>[!NOTE] <a href="https://www.envox.eu/studio/studio-introduction/">EEZ Studio</a> will display any missing system requirements. The known requirements are listed in the <a href="#prerequisites">Prerequisites</a> section.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/ch4_image_030.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="12">
+<li>Copy the generated <strong>UI folder</strong> from <code>&lt;EEZ_Project_path&gt;/src/ui</code> to the <code>proj_cm55</code>. 
+    Note that you can right-click on the EEZ Studio project tab to find and copy the project path.</li>
+</ol>
+<p><img src="assets/images/ch4_image_031.png" alt="A screenshot of a computer program" style="width:200px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="13">
+<li>Open <code>proj_cm55/source/main.c</code> and make the following modifications to initialize the new GUI and to call a periodic tick function to handle UI events:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>#include &quot;lv_port_disp.h&quot;
+#include &quot;lv_port_indev.h&quot;
+#include &quot;demos/lv_demos.h&quot;
+#include &quot;display_i2c_config.h&quot;
+<span class="gi">+#include &quot;ui.h&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>#if LV_USE_DEMO_BENCHMARK
+<span class="w"> </span>           /* Register our end callback - LVGL calls it when all scenes finish.
+<span class="w"> </span>            * Touch is initialized there, so polling does not affect benchmark scores. */
+<span class="w"> </span>           lv_demo_benchmark_set_end_cb(benchmark_end_cb);
+
+<span class="w"> </span>           /* Run the Benchmark demo */
+<span class="w"> </span>           lv_demo_benchmark();
+#else
+<span class="w"> </span>           /* Initialize touch input. Skipped during benchmark to avoid the
+<span class="w"> </span>            * CPU overhead of polling-mode touch. */
+<span class="w"> </span>           lv_port_indev_init();
+
+<span class="gd">-            /* Run the Music demo */</span>
+<span class="gd">-            lv_demo_widgets();</span>
+<span class="gi">+            /* Run the custom UI */</span>
+<span class="gi">+            ui_init();</span>
+#endif
+</code></pre></div>
+<ol start="14">
+<li>Then, add a call to <code>ui_tick()</code> in the main loop to periodically process UI events:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>    for (;;)
+<span class="w"> </span>   {
+<span class="w"> </span>       /* LVGL&#39;s timer handler function, to be called periodically to handle
+<span class="w"> </span>        * LVGL tasks.
+<span class="w"> </span>        */
+<span class="w"> </span>       time_till_next = lv_timer_handler();
+<span class="w"> </span>       vTaskDelay(pdMS_TO_TICKS(time_till_next));
+
+<span class="gi">+       ui_tick(); /* Call UI tick to handle events */        </span>
+<span class="w"> </span>   }
+</code></pre></div>
+<ol start="14">
+<li>Rebuild and program the example</li>
+<li>You should observe the new GUI running on your PSOC™ Edge EVK. 
+    Try the different screens and/or perform more customizations</li>
+</ol>
+<p><img src="assets/images/ch4_lab2_mod2_output.gif" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_1">Conclusion<a class="headerlink" href="#conclusion_1" title="Permanent link">&para;</a></h3>
+<p>This exercise successfully created a PSOC™ Edge E84 MCU graphics application using ModusToolbox™, figured out how to configure the graphics subsystem, and utilized the LVGL graphics library to develop a full-fledged UI application on the PSOC™ Edge E84 MCU platform.</p>
+<h3 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*A</td>
+<td>2026-09-26</td>
+<td>Updated to latest tools and using Visual Studio Code.</td>
+</tr>
+<tr>
+<td>**</td>
+<td>2025-01-15</td>
+<td>Initial release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSOC&trade;, is a trademark of Infineon Technologies. Any references to PSOC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 3: Sensor Hub">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 3: Sensor Hub
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 5: Memories (SMIF)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5: Memories (SMIF)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

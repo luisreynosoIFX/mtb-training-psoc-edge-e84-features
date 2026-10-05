@@ -1,0 +1,1127 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual introducing key features of the PSOC™ Edge E84 MCU, covering audio, sensor hub, graphics, external memories, low power, and machine learning.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="pse84-technical-intro-features-training-manual-ch5-smif.html">
+      
+      
+        <link rel="next" href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter 6: Low Power - PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-6-low-power-pending-update" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-header__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 6: Low Power
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-nav__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Memories (SMIF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-power-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Power measurements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-switching-power-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Switching power modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A: Creating an application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-b.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B: KIT_PSE84_EVAL details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-6-low-power-pending-update">Chapter 6: Low Power (Pending update)<a class="headerlink" href="#chapter-6-low-power-pending-update" title="Permanent link">&para;</a></h1>
+<h3 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h3>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>This document is the training manual for the technical introduction to PSOC™ Edge E84 features. This manual helps in getting started with different applications leveraging key features for PSOC™ Edge, using ModusToolbox™ software.</p>
+<p>The training is divided into multiple chapters covering topics like audio, graphics, machine learning, among others.</p>
+<p>Chapter 6 discusses PSOC™ Edge’s low-power features.</p>
+<p><strong>Intended audience</strong></p>
+<p>The document is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides detailed instructions to create, configure, build, and run several application code examples on the PSOC™ Edge E84 MCU.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>See the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html#prerequisites"><strong>Prerequisites</strong> section</a> in the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html"><strong>Chapter 1 training manual</strong></a>. for a complete list of prerequisites and development tools.</p>
+<h2 id="code-example-power-measurements">Code example: Power measurements<a class="headerlink" href="#code-example-power-measurements" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates how to configure and run low-power benchmarks for various PSOC™ Edge E84 MCU power modes such as Sleep, Deep Sleep, and Hibernate. Power measurements are done with different clock and power mode configurations matching the datasheet specifications.</p>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>The PSOC™ Edge E84 datasheet includes power specifications in various configurations of power mode, frequency, memories, and so on. Part of these specifications are shown in the following figure.</p>
+<p><img src="assets/images/ch6_image_001.png" alt="A white paper with black text" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>Note that PSOC™ Edge can be configured in two power distributions.</p>
+<p><img src="assets/images/ch6_image_002.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ul>
+<li>Supply powered, only requires 1.8 V</li>
+<li>Battery powered, uses a battery (2.7 V-4.8 V) and 1.8 V</li>
+</ul>
+<p>The SOM board included in the PSOC™ Edge EVK is configured in battery-powered mode, and thus, this configuration will be used for this training.</p>
+<p>The code example used for this lab configures the clock frequencies and system power modes of the <br />
+PSOC™ Edge E84 MCU for many of the configurations mentioned in the datasheet. You can select the desired configuration in the <em>specs.h</em> file.</p>
+<p>After building and programming the application, you can measure the current consumed by the PSOC™ Edge E84 MCU. The code example uses both the Arm® Cortex®‑M33 CPU (CM33) and the Arm® Cortex®‑M55 CPU (CM55) to run the benchmark.</p>
+<h3 id="flow-chart">Flow chart<a class="headerlink" href="#flow-chart" title="Permanent link">&para;</a></h3>
+<p>In this code example, resource initialization is performed by the CM33 non-secure (CM33_NS) code. It configures the system clocks, pins, clock-to-peripheral connections, and other platform resources. It then enables the CM55 core using the Cy_SysEnableCM55() function.</p>
+<p>The following flow chart explains the complete code flow of this code example:</p>
+<p><img src="assets/images/ch6_image_003.png" alt="A diagram of a computer system" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="hardware-overview">Hardware overview<a class="headerlink" href="#hardware-overview" title="Permanent link">&para;</a></h3>
+<p>As mentioned in Description, the SOM board included with the PSOC™ Edge EVK is pre-configured in battery-powered mode, meaning that the device has a 3.3 V component (VBAT), and a 1.8 V component (VDDD, VDDQ, VDDIO, VCCD, and so on) .</p>
+<p>The two power rails are measured using J25 and J26.</p>
+<ul>
+<li>J25 measures IDDD/IDDIO (1.8 V)</li>
+<li>J26 measures IBAT (3.3 V)</li>
+</ul>
+<blockquote>
+<p>[!NOTE] The code example README suggests measuring IDDD on FB1 and performing some hardware modifications to remove extra current from EVK. These suggestions give a more accurate measurement; however, they are not performed in this training since J25 provides an easier measurement for training purposes.</p>
+<p>[!NOTE] This example requires BOOT SW in OFF position.</p>
+</blockquote>
+<p>See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</p>
+<p><img src="assets/images/ch6_image_004.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation">Project creation<a class="headerlink" href="#project-creation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Power Measurements</strong> application under the <strong>Peripherals</strong> section.</li>
+</ol>
+<p>Note: To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+<p><img src="assets/images/ch6_image_005.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>This code example supports different power configurations. Review the default device configuration in <strong>Device Configurator</strong></li>
+<li>Open Device Configurator from the ModusToolbox™ Tools view</li>
+<li>Go to the <strong>System</strong> panel and select <strong>System→Power</strong> &gt; <strong>Power</strong></li>
+</ol>
+<p>As observed below, the default settings set the device in High-performance (HP) mode which allows running the CM33 CPU up to 200MHz and the CM55 CPU up to 400MHz. The settings also show that System Deep Sleep is the default when going to low-power mode.</p>
+<p><img src="assets/images/ch6_image_006.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Now go to the <strong>Clocks</strong> panel
+   As observed, the system uses DPLL_LP0 at 400 MHz as the source for CM33 (CLK_HF0) and for CM55 (CLK_HF1); however, CLK_HF0 has a divider to avoid exceeding its maximum frequency.</li>
+</ol>
+<p>This view also shows the configuration of other clocks such as the other 2 DPLLs or CLK_HF8, which are disabled by default.</p>
+<p>The configuration for this code example is not necessarily the same as other examples. It’s important for a low-power application to configure clocks to the minimum viable frequency or disable them when unused.</p>
+<p><img src="assets/images/ch6_image_007.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>Now go to the <strong>Peripherals</strong> tab. Observe how this example disables most peripherals by default.
+   It’s important to disable unnecessary peripherals when developing low-power applications.</li>
+</ol>
+<p><img src="assets/images/ch6_image_008.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="7">
+<li>Lastly, go to the <strong>Pins</strong> tab and observe how this application only initializes minimal GPIOs. It’s important for applications to terminate pins properly to reduce power consumption
+   The recommendation for PSOC™ Edge is that unused GPIOs should be configured in high-impedance drive mode with input buffer disabled, which is the default pin reset state.</li>
+</ol>
+<p><img src="assets/images/ch6_image_009.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="8">
+<li>Now, analyze the default settings of the code example</li>
+<li>Open <code>shared\include\specs.h</code></li>
+<li>Observe the definition of <code>SPEC_ID</code> which is set to 1, corresponding to <strong>SIDH00A</strong>.
+   This configuration correlates to the datasheet spec SIDH00A, which, as observed below, is for the CM33 in sleep mode at 200 MHz, with the CM55 off.</li>
+</ol>
+<p><img src="assets/images/ch6_image_010.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch6_image_011.png" alt="A screenshot of a computer" style="width:472px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="11">
+<li>Build and program the application</li>
+</ol>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p>After programming, the application starts automatically.</p>
+<p>Use J25 and J26 to measure the current consumption with a multimeter.</p>
+<p><strong>Table 1. Power calculation</strong></p>
+<table>
+<thead>
+<tr>
+<th>Voltage (V) in volts</th>
+<th>Current (I) in amps</th>
+<th>Power (P) in watts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VDDD = 1.8 V</td>
+<td>IDDD = measure across J26</td>
+<td>PDDD = VDDD x IDDD</td>
+</tr>
+<tr>
+<td>VBAT = 1.8 V</td>
+<td>IBAT = measure across J25</td>
+<td>PBAT = VBAT x IBAT</td>
+</tr>
+</tbody>
+</table>
+<p>Total power = PDDD + PBAT. The EVK includes additional currents for external circuitry or the VDDIOx supplies. See the code example README for more details.</p>
+<p><img src="assets/images/ch6_image_012.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>The power consumption should match the specification for SIDH00A, which sets CM33 in Sleep mode and the CM55 off. However, it’s important to note that the EVK includes some additional currents.</p>
+<p>The code example README recommends some EVK modifications to reduce power consumption.</p>
+<h3 id="modify-the-application">Modify the application<a class="headerlink" href="#modify-the-application" title="Permanent link">&para;</a></h3>
+<h4 id="change-system-power-mode">Change system power mode<a class="headerlink" href="#change-system-power-mode" title="Permanent link">&para;</a></h4>
+<p>Try testing other power configurations.</p>
+<h4 id="hints-for-the-advanced-modification">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>specs.h</code> includes definitions to configure the power modes</li>
+</ul>
+<h4 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h4>
+<ol>
+<li>As observed previously, the example is configured to test SIDH00A by default; however, it's possible to test other configurations by simply modifying <code>SPEC_ID</code></li>
+<li>Modify <code>shared\include\specs.h</code> as shown below to test Hibernate mode:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>/* Consult the PSOC Edge E84 datasheet (Section 8.2, Power supplies and
+<span class="w"> </span> * operating conditions) and pick one of the SPEC IDs from the CPU currents
+<span class="w"> </span> * table among the ones listed below as SPEC_ID constants. Set the #define SPEC_ID
+<span class="w"> </span> * to the desired value. You can also set to CUSTOM and define your own settings. */
+<span class="gd">-#define SPEC_ID (1)</span>
+<span class="gi">+#define SPEC_ID (20)</span>
+</code></pre></div>
+<ol start="3">
+<li>Rebuild, reprogram, and measure the power consumption</li>
+</ol>
+<p>Note that the example is configured to match SIDHIBA, which configures the device in System Hibernate using no clocks.</p>
+<p>As noted previously, the EVK includes some additional currents which are not considered in the datasheet; however, the measurement should be close.</p>
+<p>The code example README recommends some EVK modifications to reduce power consumption.</p>
+<p><img src="assets/images/ch6_image_013.png" alt="A screenshot of a computer" style="width:477px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch6_image_014.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Try other macros in <code>spec.h</code></li>
+</ol>
+<p>Observe that a CUSTOM (21) configuration can also be used, allowing for more flexibility in the configuration.</p>
+<p><img src="assets/images/ch6_image_015.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>This example develops a power measurement application for the PSOC™ Edge E84 MCU using ModusToolbox™. It configures the CM33 and CM55 in different power modes to measure power consumption.</p>
+<h2 id="code-example-switching-power-modes">Code example: Switching power modes<a class="headerlink" href="#code-example-switching-power-modes" title="Permanent link">&para;</a></h2>
+<h3 id="objective_1">Objective<a class="headerlink" href="#objective_1" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates how to transition between the following system power modes in PSOC™ Edge E84 MCU:</p>
+<ul>
+<li>System High Performance (HP)</li>
+<li>System Low Power (LP)</li>
+<li>System Ultra Low Power (ULP)</li>
+<li>System Deep Sleep</li>
+<li>System Hibernate</li>
+</ul>
+<p>This code example has a three-project structure: CM33 Secure, CM33 non-secure, and CM55. Extended Boot launches the CM33 Secure project present in RRAM from a fixed location, which then configures the external QSPI flash in XIP mode and launches the CM33 non-secure application. Additionally, CM33 non-secure application enables the CM55 CPU and launches the CM55 application in external flash.</p>
+<h3 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h3>
+<p>In this code example, resource initialization is performed by this CM33 non-secure project. It configures the system clocks, pins, clock-to-peripheral connections, and other platform resources. It then enables the CM55 core using the Cy_SysEnableCM55() function.</p>
+<p>In the CM33 non-secure project, the clocks and system resources are initialized by the BSP initialization function.</p>
+<p>The table below displays the configurations for different system power modes. It includes the VCCD voltage, the CM33 and the CM55 clock speeds.</p>
+<p><strong>Table 2. System power modes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Power mode</th>
+<th>VCCD</th>
+<th>CM33 max clock</th>
+<th>CM55 max clock</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HP (System High Performance)</td>
+<td>0.9 V</td>
+<td>200 MHz</td>
+<td>400 MHz</td>
+</tr>
+<tr>
+<td>LP (System Low Power)</td>
+<td>0.8 V</td>
+<td>70 MHz</td>
+<td>140 MHz</td>
+</tr>
+<tr>
+<td>ULP (System Ultra Low Power)</td>
+<td>0.7 V</td>
+<td>50 MHz</td>
+<td>50 MHz</td>
+</tr>
+<tr>
+<td>DS (System Deep Sleep)</td>
+<td>0.7 V</td>
+<td>Off</td>
+<td>Off</td>
+</tr>
+<tr>
+<td>System Hibernate</td>
+<td>Off</td>
+<td>Off</td>
+<td>Off</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hardware-overview_1">Hardware overview<a class="headerlink" href="#hardware-overview_1" title="Permanent link">&para;</a></h3>
+<p>As mentioned in Description, the SOM board included with the PSOC™ Edge EVK is pre-configured in battery-powered mode, meaning that the device has a 3.3 V component (VBAT), and a 1.8 V component (VDDD, VDDQ, VDDIO, VCCD, and so on) .</p>
+<p>The two power rails are measured using J25 and J26.</p>
+<ul>
+<li>J25 measures IDDD/IDDIO (1.8 V)</li>
+<li>J26 measures IBAT (3.3 V)</li>
+</ul>
+<blockquote>
+<p>[!NOTE] The power measurements code example README suggests measuring IDDD on FB1 and performing some hardware modifications to remove extra current from EVK. These suggestions give a more accurate measurement; however, they are not performed in this training since J25 provides an easier measurement for training purposes.</p>
+<p>[!NOTE] This example requires BOOT SW in OFF position.</p>
+</blockquote>
+<p>See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</p>
+<p><img src="assets/images/ch6_image_016.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation_1">Project creation<a class="headerlink" href="#project-creation_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Switching Power Modes</strong> application under the <strong>Peripherals</strong> section.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+<p><img src="assets/images/ch6_image_017.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Build and program the application</li>
+</ol>
+<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<p>After programming, the application automatically starts. To change the power mode, press USER BTN1 on the EVK. Measure the current consumption and note the difference in power consumption when the system changes power modes.</p>
+<p>The following flow chart explains the complete code flow of this code example.</p>
+<p><img src="assets/images/ch6_image_018.png" alt="A diagram of a system" style="width:437px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch6_image_019.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch6_image_020.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-the-application_1">Modify the application<a class="headerlink" href="#modify-the-application_1" title="Permanent link">&para;</a></h3>
+<h4 id="change-the-cpu-frequency">Change the CPU frequency<a class="headerlink" href="#change-the-cpu-frequency" title="Permanent link">&para;</a></h4>
+<p>The default code example is configuring the CM33 at 200 MHz in HP mode, 70 MHz in LP mode, and 50 MHz in ULP mode.</p>
+<p>Try modifying the code to run the CM33 CPU at 100 MHz in HP mode and 25 MHz in ULP mode.</p>
+<h4 id="hints-for-the-advanced-modification_1">Hints for the advanced modification<a class="headerlink" href="#hints-for-the-advanced-modification_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Use Device Configurator to check the clock configuration of the CPU</li>
+<li>Modify source code to configure clocks properly</li>
+</ul>
+<h4 id="solution_1">Solution<a class="headerlink" href="#solution_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>The <strong>Device Configurator</strong> provides an easy way to observe the default clock configuration
+   Open <strong>Device Configurator</strong> from the ModusToolbox™ Tools view and observe that the CPU is driven by CLK_HF0, which is derived from <code>DPLL_LP0/CLK_PATH0</code>.
+   The DPLL_LP0 is configured at 400 MHz, while the CLK_HF0 has a divider of 2, resulting in 200 MHz for the CM33 CPU.</li>
+</ol>
+<p><img src="assets/images/ch6_image_021.png" alt="A computer screen shot of a diagram" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Now, observe how the code example is configuring the clocks in each mode</li>
+</ol>
+<p>Open <code>cm33_ns/main.c</code> and observe the device configuration when HP mode is selected as shown in  </p>
+<p><img src="assets/images/ch6_image_022.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>The system is placed into HP mode by calling <code>Cy_SysPm_SystemEnterHp</code></li>
+<li>The RRAM voltage is updated by calling <code>Cy_RRAM_SetVoltageMode</code></li>
+<li><code>Cy_SysClk_ClkHfSetDivider</code> is called to set the CPU clock divider to 2</li>
+<li>The local function <code>dpll_lp_set_freq</code> is called to set the DPLL frequency</li>
+<li>Note that <code>DPLL_FREQ_HP_HZ</code> is set to 400 MHz (resulting in CPU frequency of 200 MHz after the divider)</li>
+<li>Modifying the DPLL will also affect the UART clock, thus <code>Cy_SysClk_PeriPclkSetDivider</code> is used to configure the UART divider</li>
+<li>In <code>cm33_ns/main.c</code>, modify the following code:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>/* Check if the system successfully entered HP mode. */
+<span class="w"> </span>if (Cy_SysPm_ReadStatus() &amp; CY_SYSPM_STATUS_SYSTEM_HP)
+<span class="w"> </span>{
+<span class="w"> </span>    /* Set the RRAM to HP voltage mode */
+<span class="w"> </span>    Cy_RRAM_SetVoltageMode(RRAMC0, CY_RRAM_VMODE_HP);
+
+<span class="gd">-    Cy_SysClk_ClkHfSetDivider(CY_CFG_SYSCLK_CLKHF0, CY_SYSCLK_CLKHF_DIVIDE_BY_2);</span>
+<span class="gi">+    Cy_SysClk_ClkHfSetDivider(CY_CFG_SYSCLK_CLKHF0, CY_SYSCLK_CLKHF_DIVIDE_BY_4);</span>
+<span class="w"> </span>    dpll_lp_set_freq(DPLL_FREQ_HP_HZ);
+
+<span class="w"> </span>    /* Set the peripheral clock divider for the debug UART */
+<span class="w"> </span>    Cy_SysClk_PeriPclkSetDivider((en_clk_dst_t)CYBSP_DEBUG_UART_CLK_DIV_GRP_NUM,
+<span class="w"> </span>                                 CY_SYSCLK_DIV_16_BIT, 1U, UART_HP_DIV);
+<span class="w"> </span>}
+<span class="w"> </span>printf(&quot;Power Mode: System High Performance at %uMHz\r\n&quot;,
+<span class="w"> </span>       Cy_SysClk_ClkHfGetFrequency(CY_CFG_SYSCLK_CLKHF0)/1000000);
+<span class="w"> </span>WAIT_FOR_TX_COMPLETE();
+</code></pre></div>
+<blockquote>
+<p>[!NOTE] Another option is to modify the DPLL0 frequency. This is optional; however, note that the UART clock divider must also be updated since the UART clock is derived from DPLL.</p>
+</blockquote>
+<ol start="10">
+<li>Now, divide the ULP clock as shown below:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="no">ULTRA_LOW_POWER</span><span class="p">:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Disable the high-performance DPLL and directly clock</span>
+<span class="cm">     * from IHO (50 MHz) */</span>
+<span class="w">    </span><span class="n">Cy_SysClk_PllDisable</span><span class="p">(</span><span class="n">SRSS_DPLL_LP_0_PATH_NUM</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Enter Ultra-Low Power (ULP) mode. */</span>
+<span class="w">    </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cy_SysPm_SystemEnterUlp</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CY_SYSPM_SUCCESS</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">status</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">handle_app_error</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Check if the system successfully entered ULP mode. */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Cy_SysPm_ReadStatus</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">CY_SYSPM_STATUS_SYSTEM_ULP</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* Set the RRAM to ULP voltage mode for lower consumption. */</span>
+<span class="w">        </span><span class="n">Cy_RRAM_SetVoltageMode</span><span class="p">(</span><span class="n">RRAMC0</span><span class="p">,</span><span class="w"> </span><span class="n">CY_RRAM_VMODE_ULP</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Set the high-frequency clock (CLKHF) to no divide */</span>
+<span class="w">        </span><span class="n">Cy_SysClk_ClkHfSetDivider</span><span class="p">(</span><span class="n">CY_CFG_SYSCLK_CLKHF0</span><span class="p">,</span><span class="w"> </span><span class="n">CY_SYSCLK_CLKHF_DIVIDE_BY_2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Set the peripheral clock divider for the debug UART */</span>
+<span class="w">        </span><span class="n">Cy_SysClk_PeriPclkSetDivider</span><span class="p">((</span><span class="n">en_clk_dst_t</span><span class="p">)</span><span class="n">CYBSP_DEBUG_UART_CLK_DIV_GRP_NUM</span><span class="p">,</span>
+<span class="w">                                     </span><span class="n">CY_SYSCLK_DIV_16_BIT</span><span class="p">,</span><span class="w"> </span><span class="mi">1U</span><span class="p">,</span><span class="w"> </span><span class="n">UART_ULP_DIV</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Power Mode: System Ultra Low Power at %uMHz</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">Cy_SysClk_ClkHfGetFrequency</span><span class="p">(</span><span class="n">CY_CFG_SYSCLK_CLKHF0</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">);</span>
+<span class="w">    </span><span class="n">WAIT_FOR_TX_COMPLETE</span><span class="p">();</span>
+<span class="w">    </span><span class="n">next_power_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SYSTEM_DEEP_SLEEP</span><span class="p">;</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<pre><code>&gt; [!NOTE] The DPLL is disabled in ULP mode and CLK\_HF0 is driven directly by the internal high frequency oscillator (IHO) at 50 MHz.
+</code></pre>
+<ol start="11">
+<li>Rebuild, reprogram and test the results</li>
+</ol>
+<p><img src="assets/images/ch6_image_023.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_1">Conclusion<a class="headerlink" href="#conclusion_1" title="Permanent link">&para;</a></h3>
+<p>This example successfully develops a PSOC™ Edge E84 MCU application to switch power modes using ModusToolbox™, and measures the power consumption in each mode.</p>
+<p>Dynamic voltage and frequency scaling (DVFS) is a power management technique used in modern microcontrollers, including the PSOC™ Edge MCU, to optimize power consumption and performance. The concept of DVFS involves dynamically adjusting the voltage and frequency of the processor to match the required performance level, thereby reducing power consumption and heat generation.</p>
+<blockquote>
+<p>[!NOTE] Key principles of DVFS:</p>
+</blockquote>
+<ul>
+<li><strong>Voltage reduction</strong>: Lowering the voltage supply to the processor reduces power consumption, as power is proportional to the square of the voltage</li>
+<li><strong>Frequency reduction</strong>: Decreasing the processor frequency reduces power consumption, as power is proportional to the frequency</li>
+<li><strong>Voltage-frequency correlation</strong>: To ensure stable operation, the frequency must be reduced before reducing the voltage, and the voltage must be increased before increasing the frequency. This is because a lower frequency requires a lower voltage to maintain stability, and a higher frequency requires a higher voltage to ensure reliable operation</li>
+</ul>
+<p><strong>Why is this sequence important?</strong></p>
+<p>If the voltage is reduced before reducing the frequency, the MCU may become unstable or even fail to operate correctly. Similarly, if the frequency is increased before increasing the voltage, the processor may stop working or even damage due to excessive voltage stress.</p>
+<h3 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*A</td>
+<td>2026-09-26</td>
+<td>Updated to latest tools and using Visual Studio Code.</td>
+</tr>
+<tr>
+<td></td>
+<td>2025-01-15</td>
+<td>Initial release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSOC&trade;, is a trademark of Infineon Technologies. Any references to PSOC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 5: Memories (SMIF)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5: Memories (SMIF)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 7: Machine Learning">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 7: Machine Learning
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

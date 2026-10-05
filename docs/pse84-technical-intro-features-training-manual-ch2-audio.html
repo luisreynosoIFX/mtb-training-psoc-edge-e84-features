@@ -1,0 +1,1245 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual introducing key features of the PSOC™ Edge E84 MCU, covering audio, sensor hub, graphics, external memories, low power, and machine learning.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="pse84-technical-intro-features-training-manual-ch1-intro.html">
+      
+      
+        <link rel="next" href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter 2: Audio - PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-2-audio" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-header__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 2: Audio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-nav__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-pdm-to-i2s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: PDM to I2S
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-mains-powered-local-voice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: Mains-powered local voice
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Memories (SMIF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A: Creating an application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-b.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B: KIT_PSE84_EVAL details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-2-audio">Chapter 2: Audio<a class="headerlink" href="#chapter-2-audio" title="Permanent link">&para;</a></h1>
+<h3 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h3>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>This document is the training manual for the technical introduction to PSOC™ Edge E84 features. This manual helps in getting started with different applications leveraging key features for PSOC™ Edge, using ModusToolbox™ software.</p>
+<p>The training is divided into multiple chapters covering topics like audio, graphics, machine learning, among others.</p>
+<p>Chapter 2 discusses PSOC™ Edge’s audio features.</p>
+<p><strong>Intended audience</strong></p>
+<p>The document is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides detailed instructions to create, configure, build, and run application code examples on the PSOC™ Edge E84 MCU.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>See the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html#prerequisites"><strong>Prerequisites</strong> section</a> in the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html"><strong>Chapter 1 training manual</strong></a>. for a complete list of prerequisites and development tools.</p>
+<h3 id="tools-for-audio-labs">Tools for audio labs<a class="headerlink" href="#tools-for-audio-labs" title="Permanent link">&para;</a></h3>
+<p>Note that audio labs utilize the following additional tools:</p>
+<ul>
+<li><a href="https://github.com/ARM-software/LLVM-embedded-toolchain-for-Arm/releases/">LLVM for Arm®</a> v19.1.5 or later if recommended by ModusToolbox™<ul>
+<li>The code example used in <a href="#code-example-mains-powered-local-voice">Mains-powered local voice</a> requires the LLVM for Arm® or the Arm® compilers. This lab uses LLVM. </li>
+<li>See instructions in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A</a> for instructions on how to install LLVM in Visual Studio Code.</li>
+</ul>
+</li>
+<li><a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a></li>
+<li>You will need to create an account for this tool. This tool is used with <a href="#code-example-mains-powered-local-voice">Mains-powered local voice</a>, but it is not required to build the default example.</li>
+<li><a href="https://softwaretools.infineon.com/tools/com.ifx.tb.tool.deepcraftaudioenhancementtechpack">DEEPCRAFT™ Audio Enhancement Tech Pack</a> v1.3.0 or later</li>
+<li>This tool is not required to build and perform the modifications suggested in this manual; however, this guide provides an introduction and mentions some of its features.</li>
+</ul>
+<h2 id="code-example-pdm-to-i2s">Code example: PDM to I2S<a class="headerlink" href="#code-example-pdm-to-i2s" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates how to route pulse-density modulation (PDM) audio data to the inter-IC sound (I2S) interface in PSOC™ Edge MCU. For this code example the PDM/PCM and I2S hardware blocks are configured to be used by the Arm® Cortex®-M33 CPU.</p>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>This code example shows how to record a short audio sample from a microphone and then play it on a speaker or headphone. The example uses the PDM/PCM block to interface with a digital microphone. All recorded data is stored in the internal SRAM. Once the recording completes, the I2S block starts sending data to an external audio codec TLV320DAC3100. Press the user button on the kit to record an audio sample. When the button is released, it plays back the recorded audio.</p>
+<p><img src="assets/images/ch2_image_001.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="audio-data-flow">Audio data flow<a class="headerlink" href="#audio-data-flow" title="Permanent link">&para;</a></h3>
+<p>Audio data is sampled by PDM mics on EVK in PDM format. PDM is best summarized as "oversampled 1-bit audio" as it is nothing more than a high-sampling rate, single-bit digital signal. Most current digital audio systems use multi-bit PCM to represent the signal. The PDM/PCM block converts PDM data to PCM data. PCM's advantage is that it is easy to manipulate. This enables signal processing operations on the audio stream, such as mixing, filtering, and equalization.</p>
+<p>The converted PCM audio data is stored in SRAM. Audio data is played over the speaker on the EVK board. The PCM data is sent to the onboard hardware codec (TLV320DAC3100) over I2S. The speaker is connected to the TLV320DAC3100.</p>
+<p>The high-level data flow of audio data is shown below.</p>
+<p><img src="assets/images/ch2_image_002.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="hardware-overview">Hardware overview<a class="headerlink" href="#hardware-overview" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This code example requires BOOT SW in ON position
+See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</li>
+</ul>
+<p><img src="assets/images/ch2_image_003.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation">Project creation<a class="headerlink" href="#project-creation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge PDM to I2S</strong> application under the <strong>Peripherals</strong> section.</p>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.
+<img src="assets/images/ch2_image_004.png" alt="A screenshot of a computer program" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+</blockquote>
+</li>
+<li>
+<p>[INFO] PDM/PCM and I2S are configured by the <strong>Device Configurator</strong>
+   No changes will be implemented at this point, but you can try opening the <strong>Device Configurator</strong> to observe the configuration.
+   - <strong>Clock configuration</strong>:</p>
+<ul>
+<li>Both PDM/PCM and I2S use the same HF7. Due to fractional clock frequency requirements, one PLL is dedicated to audio clocks.
+<img src="assets/images/ch2_image_005.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+<li>The PDM clock (<code>CYBSP_PDM_CLK_DIV</code>) is configured as follows:
+<img src="assets/images/ch2_image_006.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+<li>The clock path will be:
+   DPLL_PLL → HF7 → 16.5 fractional divider → PDM/PCM interface clock (clk_if_srss)
+<img src="assets/images/ch2_image_007.png" alt="A diagram of a clock" style="width:500px; height:auto; display:block; margin:0 auto;" /></li>
+<li>The I2S clock (<code>CYBSP_TDM_CONTROLLER_0_CLK_DIV)</code> configuration is as shown below:
+<img src="assets/images/ch2_image_008.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+<li>The clock path is:
+   DPLL_PLL → HF7 → 16.5 fractional divider → I2S interface clock (clk_if_srss[0:3])
+<img src="assets/images/ch2_image_009.png" alt="A diagram of a clock" style="width:500px; height:auto; display:block; margin:0 auto;" /></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>Peripherals configuration</strong>:<ul>
+<li>Observe the PDM/PCM configuration: <strong>Digital</strong> &gt; <strong>Pulse Density Modulated (PDM) 0</strong> (<code>CYBSP_PDM</code>) as shown in the figure below.
+<img src="assets/images/ch2_image_010.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+</ul>
+</li>
+<li>Observe the I2S configuration in <strong>Communication</strong> &gt; <strong>Time Division Multiplexing (TDM)</strong> &gt; <strong>TDM 0</strong> (<code>CYBSP_TDM_CONTROLLER_0</code>):
+<img src="assets/images/ch2_image_011.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+</ul>
+<ol start="3">
+<li>
+<p>[INFO] No modifications are necessary to build the default code, but feel free to observe the source code
+   - The application is implemented using the non-secure CM33 project, so the main file is located at:
+   <code>&lt;PROJ_DIR&gt;/PSOC_Edge_PDM_to_I2S.proj_cm33_ns/main.c</code>
+   - The source code to initialize and handle PDM data from microphones is implemented at:
+   <code>&lt;PROJ_DIR&gt;/PSOC_Edge_PDM_to_I2S.proj_cm33_ns/source/app_pdm_pcm/</code>
+   - The source code to initialize and handle output I2S data to speakers is at:
+   <code>&lt;PROJ_DIR&gt;/PSOC_Edge_PDM_to_I2S.proj_cm33_ns/source/app_i2s/</code></p>
+</li>
+<li>
+<p>Build and program the application</p>
+</li>
+</ol>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p>After successful programming, press and hold the user button BTN1 on the PSOC™ Edge E84 kit and record audio. Release the button to play back the audio on the kit speaker.</p>
+<p>Optionally, open a terminal to observe the application running.</p>
+<p><img src="assets/images/ch2_lab1_output1.gif" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-application">Modify application<a class="headerlink" href="#modify-application" title="Permanent link">&para;</a></h3>
+<p>There are many configurable parameters in this code example: the PDM/PCM, the I2S, and the TLV320DAC3100 hardware codec. Try changing the playback volume. This provides a foundation for further experimentation and optimization of the system.</p>
+<p><strong>Hints for advanced modification</strong></p>
+<ul>
+<li>Look for a codec API to modify volume</li>
+<li>The codec is implemented in mtb_tlv320dac3100</li>
+</ul>
+<p><strong>Solution</strong></p>
+<ol>
+<li>
+<p>Open the mtb_tlv320dac3100 API reference available in GitHub at <a href="https://github.com/Infineon/audio-codec-tlv320dac3100/blob/master/API_reference.md">TLV320DAC3100 API reference</a></p>
+</li>
+<li>
+<p>Observe the code snippet to adjust the volume of the speaker and headphone. However, notice that the current setup is using the speaker and not the headphone:
+   <a href="https://github.com/Infineon/audio-codec-tlv320dac3100/blob/master/API_reference.md#snippet-2-volume-control-of-speaker-and-headphone">API reference: speaker and headphone volume</a></p>
+</li>
+<li>
+<p>Open <code>proj_cm33_ns/main.c</code> and modify the code as shown.
+    Observe that <code>mtb_tlv320dac3100_adjust_speaker_output_volume</code> takes an 8-bit value as a parameter which represents the volume in 0.5 dB increments.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Initialize the PDM-PCM block */</span>
+<span class="n">app_pdm_pcm_init</span><span class="p">();</span>
+
+<span class="cm">/******** Code to modify volume ********/</span>
+<span class="cm">/* Deactivates TLV320DAC3100 audio codec */</span>
+<span class="n">mtb_tlv320dac3100_deactivate</span><span class="p">();</span>
+
+<span class="cm">/* Updates the volume of both the left and right channels of the speaker output */</span>
+<span class="n">mtb_tlv320dac3100_adjust_speaker_output_volume</span><span class="p">(</span><span class="mh">0xFE</span><span class="p">);</span>
+
+<span class="cm">/* Activates TLV320DAC3100 audio codec */</span>
+<span class="n">mtb_tlv320dac3100_activate</span><span class="p">();</span>
+<span class="cm">/******** End of code to modify volume ********/</span>
+
+<span class="cm">/* Enable CM55 */</span>
+</code></pre></div>
+<ol start="4">
+<li>Save the changes to the file, rebuild, and reprogram the updated code</li>
+<li>Test the change by recording and playing back some audio</li>
+</ol>
+<p>If the volume seems too high or too low, you can readjust the value until you achieve the desired volume.</p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>This exercise successfully built and modified the PSOC™ Edge E84 PDM to I2S code example using ModusToolbox™, and demonstrated how to use the PDM/PCM and I2S blocks in the PSOC™ Edge E84 MCU.</p>
+<p>This example is a foundation for other audio code examples since it shows how to receive data using PDM microphones and how to transfer to the speaker using I2S.</p>
+<h2 id="code-example-mains-powered-local-voice">Code example: Mains-powered local voice<a class="headerlink" href="#code-example-mains-powered-local-voice" title="Permanent link">&para;</a></h2>
+<h3 id="objective_1">Objective<a class="headerlink" href="#objective_1" title="Permanent link">&para;</a></h3>
+<p>This code example demonstrates how to implement the mains-powered local voice use case, using the audio front end (AFE) components and Infineon’s DEEPCRAFT™ solutions for wake word detection and automatic speech recognition (ASR). By understanding how the AFE Components work together, and customizing them for your specific application, you can optimize the performance of the system and enhance the user experience.</p>
+<p>“Mains-powered” simply means that the use-case for this application is to be always on and listening and therefore cannot be powered by a battery.</p>
+<p>Note that the inferencing library solution and corresponding code examples are available only for the Arm® and LLVM compilers. These instructions use the LLVM compiler.<br />
+Also note that the audio-voice-core library and voice assistant inferencing library included in this code example have a limited operation of about 15 minutes and 30 minutes respectively. For an unlimited licence, please contact your Infineon support.</p>
+<h3 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h3>
+<p>The code example is designed to detect voice commands and activate wake word detection using PSOC™ Edge MCUs. It demonstrates how to use an audio pipeline on the Arm® Cortex®-M55 core, starting from audio capture, audio data processing using Infineon’s DEEPCRAFT™ Audio Enhancement (AE), audio data inferencing with Infineon’s <a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a> (VA), post-processing of inferred results, and performing actions based on the results. Both VA and AE components (noise suppression and echo suppression) utilize <br />
+Ethos™-U55.</p>
+<p>The code example leverages the display to show a music player with 2D graphics and uses “OK Infineon” as the wake word and supports several commands/intents. <br />
+The following block diagram shows a high-level overview of the audio pipeline:</p>
+<p><img src="assets/images/ch2_image_013.png" alt="A blue square with white text" style="width:1024px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="audio-data-flow_1">Audio data flow<a class="headerlink" href="#audio-data-flow_1" title="Permanent link">&para;</a></h3>
+<p>The entire audio pipeline runs on Arm® Cortex® M55 (CM55). PDM mics are controlled by the CM55 application.</p>
+<p>The audio frames from the PDM microphone are fed into audio enhancement (AE). The processed audio frames are then sent to the inferencing engine for wake word and command detection. Based on the inferred data, the required action is taken, and the pre-recorded audio data is played over I2S on the onboard speakers.</p>
+<p>The audio front end (AFE) middleware has multiple software components:</p>
+<ul>
+<li>High-pass filter</li>
+<li>Analysis</li>
+<li>Acoustic echo cancellation (AEC)</li>
+<li>Beamforming</li>
+<li>Dereverberation</li>
+<li>Echo suppression</li>
+<li>Noise suppression</li>
+<li>Synthesis</li>
+</ul>
+<p>The audio data flows through each component of AFE depending on whether it is enabled or not. The microphone data is then filtered using a high-pass filter to remove any low-frequency noise or interference. The AEC block uses reference/playback audio data to cancel out any acoustic echoes. The noise suppression component is used to reduce background noise and improve the clarity of the audio signal. Overall, the AFE components work together to enhance the quality of the audio signal and improve the inferencing performance.</p>
+<p>The noise suppression and echo suppression components are ML-based and are executed on Ethos™-U55. The processed audio data is then sent to the voice assistant for wake word detection and automatic speech recognition.</p>
+<p>The code flow of this application is shown in the figure below for the “OK Infineon” wake word and “Play Music” command.</p>
+<p><img src="assets/images/ch2_image_014.png" alt="Figure" style="width:1024px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="hardware-overview_1">Hardware overview<a class="headerlink" href="#hardware-overview_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This example requires BOOT SW in OFF position, and it uses the display to show a music player.
+See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</li>
+</ul>
+<p><img src="assets/images/ch2_image_015.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation_1">Project creation<a class="headerlink" href="#project-creation_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Mains Powered Local Voice</strong> application under the <strong>Audio</strong> section.<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/ch2_image_016.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>
+<p>[INFO] After the project is created, observe the project file structure:
+<img src="assets/images/ch2_image_017.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>[INFO] This code example uses the AFE Configurator tool to choose and customize the audio front end (AFE) components running on PSOC™ Edge. This tool provides a graphical user interface (GUI) that allows you to select the different AFE components, such as acoustic echo cancellation (AEC), beamforming, dereverberation, echo suppression (ES), and noise suppression.
+   After configuring the different AFE components, the AFE configurator tool generates source files, which are used directly by the application. In this way, the AFE configurator tool provides a convenient way to configure the AFE components without needing to manually edit the firmware code. It also ensures that the configuration is consistent across different projects and simplifies the process of updating the AFE configuration.</p>
+</li>
+<li>
+<p>To open the AFE Configurator tool, select the <strong>proj_cm55</strong> application in the ModusToolbox™ for VS Code extension, and scroll down to click the <strong>Audio FE Configurator</strong> tool  </p>
+<blockquote>
+<p>[!NOTE] The <a href="https://softwaretools.infineon.com/tools/com.ifx.tb.tool.deepcraftaudioenhancementtechpack">DEEPCRAFT™ Audio Enhancement Tech Pack</a> must be installed as mentioned in the <a href="#tools-for-audio-labs">prerequisites section</a>.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/ch2_image_018.png" alt="A screenshot of a computer program" style="width:800px; height:auto; display:block; margin:0 auto;" />
+<img src="assets/images/ch2_image_018b.png" alt="A screenshot of a computer program" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>[INFO] Observe the different settings. For example, the figure below highlights the options to select between mono/stereo and the input source.<br />
+   This training is not intended to delve into AFE parameters since these topics will be covered in advanced training.</li>
+</ol>
+<p><img src="assets/images/ch2_image_019.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>Build and program the application<blockquote>
+<p>[!NOTE] This project uses the LLVM Compiler. Make sure the compiler is configured correctly as described in <a href="pse84-technical-intro-features-training-manual-appendix-a.html#using-llvm-compiler-in-visual-studio-code">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<p>Once running, you should observe the music player on the display. The terminal will display a message and the supported commands.</p>
+<blockquote>
+<p>[!NOTE] Note that the BOOT switch must be set to OFF as mentioned in the<em> Hardware overview </em>section.</p>
+</blockquote>
+<p>Say the wake word “<strong>OK Infineon</strong>”, followed by one of the supported commands, such as “<strong>Play Music</strong>”.</p>
+<p>Observe the output in the terminal and the application.
+<img src="assets/images/ch2_lab2_output2.gif" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" />
+<img src="assets/images/ch2_lab2_output1.gif" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-application_1">Modify application<a class="headerlink" href="#modify-application_1" title="Permanent link">&para;</a></h3>
+<p>The default mains powered local voice code example uses the wake word “OK Infineon”. This section explains how to use <a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a> to change the wake word, and how to add a new command.</p>
+<p><strong>Hints for the advanced modification</strong></p>
+<ul>
+<li>Use the <a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a> to modify the wake word</li>
+<li>A new project can be created, or the voice assistant project included in the code example can be reused</li>
+<li>Update the va_model</li>
+<li>Add any new intent macros and command IDs</li>
+</ul>
+<p><strong>Solution</strong></p>
+<ol>
+<li>Log in to <a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a></li>
+<li>Click <strong>Import Project</strong></li>
+</ol>
+<p><img src="assets/images/ch2_image_023.png" alt="A long line of a blue object" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>
+<p>Click <strong>Browse file</strong>, then navigate to the location of the voice assistant project:
+<code>proj_cm55\source\mains_powered_application\inferencing_interface\COMPONENT_VOICE_ASSISTANT\va_proj\localvoice_music_nonum.vaproj</code></p>
+</li>
+<li>
+<p>Add a <strong>Voice Project Name</strong> and click <strong>Import</strong>
+<img src="assets/images/ch2_image_024.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>After the project is imported, click on <strong>Edit</strong>
+   <img src="assets/images/ch2_image_025.png" alt="A screenshot of a computer" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>[INFO] Observe the default structure of the voice assistant project used for this code example.<br />
+   Note that the <strong>wake word</strong> is on the left side in green, and it connects to multiple <strong>text commands</strong> in orange, which trigger individual <strong>intents</strong> in purple.
+   Some of the commands are <strong>required</strong> while others are <strong>optional</strong>, so the following commands will trigger the same intent:</p>
+<ul>
+<li>OK Infineon, [can you] play [the] music → (play music)</li>
+<li>OK Infineon, [can you] start [the] music → (play music)</li>
+<li>OK Infineon, [can you] play [the] track → (play music)</li>
+<li>OK Infineon, [can you] start [the] track → (play music)</li>
+</ul>
+</li>
+<li>
+<p>Zoom in on the wake word on the left side, click on it to open the <strong>Properties</strong>. Change the <strong>Interjection</strong> to “Hey”. Then delete the current <strong>wake word</strong> “Infineon” and replace it with a word of your choice, like “Edge”. Press Enter to add the wake word
+<img src="assets/images/ch2_image_026.png" alt="A screenshot of a graph" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>Navigate to the first commands at the top to play music. Add “my” as optional text, and “song” to the list of supported text.
+   This will add support for the following command:</p>
+<ul>
+<li>Hey Edge, [can you] play [my] song→ (play music)
+<img src="assets/images/ch2_image_027.png" alt="A screenshot of a graph" style="width:800px; height:auto; display:block; margin:0 auto;" /></li>
+</ul>
+</li>
+<li>
+<p>Navigate to the intent connected to this command and modify the <strong>Intent Name</strong> to “play_song”</p>
+<blockquote>
+<p>[!NOTE] This step is not necessary to change the command, but will be used to explain how to change the intent in the source code.
+<img src="assets/images/ch2_image_028.png" alt="A screen shot of a computer screen" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+</blockquote>
+</li>
+<li>
+<p>Open Settings to confirm that the project is set for <strong>PSOC™ Edge E84: CM55 + U55</strong> and click on <strong>Generate</strong></p>
+<blockquote>
+<p>[!NOTE] This step can take several minutes.
+<img src="assets/images/ch2_image_029.png" alt="A screenshot of a computer" style="width:238px; height:auto; display:block; margin:0 auto;" /></p>
+</blockquote>
+</li>
+<li>
+<p>Once the model is generated, download the files
+<img src="assets/images/ch2_image_030.png" alt="A screenshot of a phone" style="width:234px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>Unzip, and copy-paste the files to your ModusToolbox™ project in the following location:
+<code>&lt;PROJ_DIR&gt;/PSOC_Edge_Mains_Powered_Local_Voice.proj_cm55/source/mains_powered_application/inferencing_interface/COMPONENT_VOICE_ASSISTANT/va_model</code></p>
+<blockquote>
+<p>[!NOTE] Delete previous contents or overwrite any files as needed.
+<img src="assets/images/ch2_image_031.png" alt="A screenshot of a computer program" style="width:382px; height:auto; display:block; margin:0 auto;" /></p>
+</blockquote>
+</li>
+<li>
+<p>In <code>proj_cm55/Makefile</code>, set <em><code>DEEPCRAFT_PROJECT_NAME=[name of your VA project]</code></em>, using the VA cloud project name prefixed for the downloaded files
+<img src="assets/images/ch2_image_032.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+</li>
+<li>
+<p>The intent name was modified, so the corresponding macro must also be updated.
+   Change the lines in red for the ones in green at the following file:
+   <code>proj_cm55\source\mains_powered_application\inferencing_interface\inferencing_interface.h</code></p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>typedef enum cy_grp_2_asr_cmds_music
+{
+<span class="gd">-    PLAY_MUSIC_CMD_ID = 401,</span>
+<span class="gi">+    PLAY_SONG_CMD_ID = 401,  </span>
+<span class="w"> </span>   STOP_MUSIC_CMD_ID,
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>#define INF_WAKE_WORD                &quot;WAKEWORD&quot;
+
+<span class="gd">-#define INTENT_PLAY_MUSIC            &quot;play_music&quot;</span>
+<span class="gi">+#define INTENT_PLAY_SONG            &quot;play_song&quot;</span>
+#define INTENT_STOP_MUSIC            &quot;end_music&quot;
+#define INTENT_INCREASE_VOLUME       &quot;raise_volume&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>#define INF_OK_INFINEON              &quot;Okay Infineon&quot;
+<span class="gd">-#define INF_PLAY_MUSIC               &quot;play music&quot;\</span>
+<span class="gi">+#define INF_PLAY_SONG               &quot;play song&quot;</span>
+#define INF_STOP_MUSIC               &quot;stop music&quot;
+#define INF_INCREASE_VOLUME          &quot;increase volume&quot;
+#define INF_DECREASE_VOLUME          &quot;decrease volume&quot;
+</code></pre></div>
+<ol start="15">
+<li>
+<p>[INFO]  <a href="https://deepcraft-voice-assistant.infineon.com/">DEEPCRAFT™ Voice Assistant</a> generates intent macros that can be used in the application; however, in this case, we are only showing how to modify the macros for demonstration purposes. 
+    The macros generated by the tool are available at:
+   <code>proj_cm55\source\mains_powered_application\inferencing_interface\ COMPONENT_VOICE_ASSISTANT\va_model\app_[project_name].h</code></p>
+</li>
+<li>
+<p>Open <code>proj_cm55\source\mains_powered_application\inferencing_interface\ COMPONENT_VOICE_ASSISTANT\va_inferencing.c</code> and make the modifications shown below. 
+<div class="highlight"><pre><span></span><code>void va_intent_to_id (char *intent)
+{
+<span class="w"> </span>   int map_id=0;
+
+<span class="w"> </span>   app_log_print(&quot;Detected intent %s \r\n&quot;,intent);
+
+<span class="w"> </span>   if (!strcmp(intent,INF_WAKE_WORD))
+<span class="w"> </span>   {
+<span class="w"> </span>       map_id = WAKEWORD_CMD_ID;
+<span class="w"> </span>   }
+<span class="gd">-    else if (!strcmp(intent,INTENT_PLAY_MUSIC))</span>
+<span class="gi">+    else if (!strcmp(intent,INTENT_PLAY_SONG))  </span>
+<span class="w"> </span>   {
+<span class="gd">-        map_id = PLAY_MUSIC_CMD_ID;</span>
+<span class="gi">+        map_id = PLAY_SONG_CMD_ID;</span>
+<span class="w"> </span>   }
+<span class="w"> </span>   else if (!strcmp(intent,INTENT_STOP_MUSIC))
+<span class="w"> </span>   {
+<span class="w"> </span>       map_id = STOP_MUSIC_CMD_ID;
+<span class="w"> </span>   }
+</code></pre></div></p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>void va_command_to_id (char *command)
+{
+<span class="w"> </span>   int map_id=0;
+
+<span class="w"> </span>   app_log_print(&quot;Detected %s \r\n&quot;,command);
+
+<span class="w"> </span>   if (!strcmp(command,INF_WAKE_WORD))
+<span class="w"> </span>   {
+<span class="w"> </span>       map_id = WAKEWORD_CMD_ID;
+<span class="w"> </span>   }
+<span class="gd">-    else if (!strcmp(command,INF_PLAY_MUSIC))</span>
+<span class="gi">+    else if (!strcmp(command,INF_PLAY_SONG))  </span>
+<span class="w"> </span>   {
+<span class="gd">-        map_id = PLAY_MUSIC_CMD_ID;</span>
+<span class="gi">+        map_id = PLAY_SONG_CMD_ID;  </span>
+<span class="w"> </span>   }
+</code></pre></div>
+<ol start="17">
+<li>
+<p>Open <code>proj_cm55\source\mains_powered_application\control_task.c</code> and update as shown below
+<div class="highlight"><pre><span></span><code><span class="gd">-                case PLAY_MUSIC_CMD_ID:</span>
+<span class="gi">+                case PLAY_SONG_CMD_ID:  </span>
+<span class="w"> </span>               case STOP_MUSIC_CMD_ID:
+<span class="w"> </span>               case NEXT_TRACK_CMD_ID:
+<span class="w"> </span>               case PREVIOUS_TRACK_CMD_ID:
+<span class="w"> </span>               case PAUSE_MUSIC_CMD_ID:
+<span class="w"> </span>               case INCREASE_VOL_CMD_ID:
+<span class="w"> </span>               case DECREASE_VOL_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_0_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_1_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_2_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_3_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_4_CMD_ID:
+<span class="w"> </span>               case VOL_LEVEL_5_CMD_ID:
+<span class="w"> </span>               {
+#ifdef AUDIO_OUT
+<span class="w"> </span>                   music_player_q_data.data = NULL;
+<span class="w"> </span>                   music_player_q_data.data_len = 0;
+#endif
+<span class="w"> </span>                   app_log_print(&quot;ASR command detected \r\n&quot;);
+<span class="gd">-                    if (map_id==PLAY_MUSIC_CMD_ID)</span>
+<span class="gi">+                    if (map_id==PLAY_SONG_CMD_ID)  </span>
+<span class="w"> </span>                   {
+<span class="w"> </span>                       app_log_print(&quot;Play Music \r\n&quot;);
+#ifdef AUDIO_OUT
+<span class="w"> </span>                       i2s_control_flag = I2S_PLAYBACK_PLAY_MUSIC;
+<span class="w"> </span>                       asr_flag=1;
+#endif /* AUDIO_OUT */
+<span class="w"> </span>                   }
+</code></pre></div></p>
+</li>
+<li>
+<p>Update <code>proj_cm55\source\use_case\COMPONENT_MUSICPLAYER\ COMPONENT_GFX_UI\music_player_gfx_task.c</code> to handle the new intent in the music player demo</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w"> </span>   for (;;)
+<span class="w"> </span>   {
+<span class="w"> </span>       /* Check if there&#39;s a message in the queue */
+<span class="w"> </span>       if (xQueueReceive(mp_gfx_queue_handle, &amp;mp_gfx_queue_data, 0) == pdTRUE)
+<span class="w"> </span>       {
+<span class="w"> </span>           switch(mp_gfx_queue_data.command)
+<span class="w"> </span>           {
+<span class="w"> </span>               case OK_INFINEON_CMD_ID:
+<span class="w"> </span>               {
+<span class="w"> </span>                   lv_obj_clear_flag(g_spinner, LV_OBJ_FLAG_HIDDEN);
+<span class="w"> </span>                   lv_obj_add_flag(g_img, LV_OBJ_FLAG_HIDDEN);
+<span class="w"> </span>                   lv_demo_music_pause();
+<span class="w"> </span>                   break;
+<span class="w"> </span>               }
+<span class="gd">-                case PLAY_MUSIC_CMD_ID:</span>
+<span class="gi">+                case PLAY_SONG_CMD_ID:  </span>
+<span class="w"> </span>               {
+<span class="w"> </span>                   lv_obj_clear_flag(g_img, LV_OBJ_FLAG_HIDDEN);
+<span class="w"> </span>                   lv_obj_add_flag(g_spinner, LV_OBJ_FLAG_HIDDEN);
+<span class="w"> </span>                   lv_demo_music_resume();
+<span class="w"> </span>                   break;
+<span class="w"> </span>               }
+</code></pre></div>
+<ol start="19">
+<li>Lastly, update <code>proj_cm55\source\mains_powered_application\mains_powered_local_voice.c</code> to show the modified wake-word and command in the terminal</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="gd">-    app_log_print(&quot;Wake word: Okay Infineon\r\n&quot;</span>
+<span class="gi">+    app_log_print(&quot;Wake word: Hey Edge\r\n&quot;  </span>
+<span class="w"> </span>          &quot;Commands:\r\n&quot;
+<span class="gd">-           &quot;    Play music\r\n&quot;</span>
+<span class="gi">+           &quot;    Play song\r\n&quot;  </span>
+<span class="w"> </span>          &quot;    Next track\r\n&quot;
+<span class="w"> </span>          &quot;    Previous track\r\n&quot;
+<span class="w"> </span>          &quot;    End music\r\n&quot;
+<span class="w"> </span>          &quot;    Pause music \r\n&quot;
+<span class="w"> </span>          &quot;    Raise volume\r\n&quot;
+<span class="w"> </span>          &quot;    Lower volume\r\n&quot;
+<span class="w"> </span>          &quot;    Set volume to level &lt;0-5&gt; \r\n&quot;
+</code></pre></div>
+<ol start="20">
+<li>Rebuild and reprogram the device. Use the new wake word "Hey Edge" followed by the command "[can you] play [my] song" to observe the changes.
+<img src="assets/images/ch2_lab2_output3.gif" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></li>
+</ol>
+<h3 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*A</td>
+<td>2026-09-26</td>
+<td>Updated to latest tools and using Visual Studio Code.</td>
+</tr>
+<tr>
+<td>**</td>
+<td>2025-01-15</td>
+<td>Initial release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSOC&trade;, is a trademark of Infineon Technologies. Any references to PSOC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 1: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 1: Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 3: Sensor Hub">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Chapter 3: Sensor Hub
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

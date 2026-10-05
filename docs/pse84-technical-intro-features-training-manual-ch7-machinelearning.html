@@ -1,0 +1,1503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual introducing key features of the PSOC™ Edge E84 MCU, covering audio, sensor hub, graphics, external memories, low power, and machine learning.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="pse84-technical-intro-features-training-manual-ch6-lowpower.html">
+      
+      
+        <link rel="next" href="pse84-technical-intro-features-training-manual-appendix-a.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter 7: Machine Learning - PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-7-machine-learning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-header__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 7: Machine Learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" class="md-nav__button md-logo" aria-label="PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ Edge Training - Technical Introduction to PSOC™ Edge E84 Features
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-edge-e84-features" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-edge-e84-features
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch1-intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch2-audio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2: Audio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch3-sensorhub.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3: Sensor Hub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch4-graphics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4: Graphics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch5-smif.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5: Memories (SMIF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6: Low Power
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pse84-technical-intro-features-training-manual-ch7-machinelearning.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7: Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-deepcrafttm-ml-data-collection-imu-or-pdmpcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: DEEPCRAFT™ ML data collection (IMU or PDM/PCM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deepcrafttm-studio-model-creation-and-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEEPCRAFT™ Studio: Model creation and generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example-deepcrafttm-ml-deploy-imu-or-pdmpcm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code example: DEEPCRAFT™ ML deploy (IMU or PDM/PCM)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix A: Creating an application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pse84-technical-intro-features-training-manual-appendix-b.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix B: KIT_PSE84_EVAL details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-7-machine-learning">Chapter 7: Machine Learning<a class="headerlink" href="#chapter-7-machine-learning" title="Permanent link">&para;</a></h1>
+<h3 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h3>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>This document is the training manual for the technical introduction to PSOC™ Edge E84 features. This manual helps in getting started with different applications leveraging key features for PSOC™ Edge, using ModusToolbox™ software.</p>
+<p>The training is divided into multiple chapters covering topics like audio, graphics, machine learning, among others.</p>
+<p>Chapter 7 discusses PSOC™ Edge’s machine learning (ML) features.</p>
+<p><strong>Intended audience</strong></p>
+<p>The document is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides detailed instructions to create, configure, build, and run several application code examples on the PSOC™ Edge E84 MCU.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>See the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html#prerequisites"><strong>Prerequisites</strong> section</a> in the <a href="pse84-technical-intro-features-training-manual-ch1-intro.html"><strong>Chapter 1 training manual</strong></a>. for a complete list of prerequisites and development tools.</p>
+<h3 id="tools-for-machine-learning-labs">Tools for machine learning labs<a class="headerlink" href="#tools-for-machine-learning-labs" title="Permanent link">&para;</a></h3>
+<p>Note that machine learning labs utilize the following additional tools:</p>
+<ul>
+<li><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> v5.14.5788 or later</li>
+<li>Create an <a href="https://account.imagimob.com/signup">Imagimob account</a> to train models</li>
+</ul>
+<h2 id="code-example-deepcrafttm-ml-data-collection-imu-or-pdmpcm">Code example: DEEPCRAFT™ ML data collection (IMU or PDM/PCM)<a class="headerlink" href="#code-example-deepcrafttm-ml-data-collection-imu-or-pdmpcm" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>To get started with the machine learning (ML) model, a ModusToolbox™ code example is used to collect data from sensors which can be imported into <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<p>This guide supports collecting data from two sources:</p>
+<ul>
+<li>Using an inertial measurement unit (IMU)</li>
+<li>Using a digital microphone via pulse-density modulation to pulse-code modulation (PDM/PCM)</li>
+</ul>
+<blockquote>
+<p>[!NOTE] Images and steps in this section are shown for IMU if the process between both flows is similar; otherwise, the guide explains the differences when using PDM/PCM.</p>
+</blockquote>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>The code example used in this guide demonstrates how to collect data by implementing the <a href="https://developer.imagimob.com/deepcraft-studio/getting-started/tensor-streaming-protocol/registering-sensors-using-protocolv2">DEEPCRAFT™ streaming protocol v2</a>, allowing the streaming of sensor data and other information from the PSOC™ Edge EVK into <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> over USB.</p>
+<p>The code example supports collecting data from different sources using the Cortex® M55 (CM55) CPU, including:</p>
+<ul>
+<li>Inertial measurement unit (IMU-BMI270),</li>
+<li>Magnetometer (BMM350),</li>
+<li>XENSIV™ digital MEMS microphones (IM73D122V01) using PDM/PCM,</li>
+<li>XENSIV™ digital barometric air pressure sensor (DPS368),</li>
+<li>Digital humidity and temperature sensor (SHT40T), and,</li>
+<li>XENSIV™ 60 GHz radar sensor (BGT60TR13C)</li>
+</ul>
+<p>This guide will provide the steps to use IMU and microphone using PDM/PCM.</p>
+<p>Data is transmitted over USB and will be used in subsequent steps to generate a model.</p>
+<p>When using the IMU:</p>
+<ul>
+<li>The code example collects data from the IMU BMI270 included in the PSOC™ Edge EVK</li>
+<li>Data consists of the 3-axis accelerometer and 3-axis gyroscope data obtained from the IMU</li>
+<li>Data is read from IMU over I2C and then transmitted to the PC over USB</li>
+<li>The following configurations are supported by DEEPCRAFT™</li>
+</ul>
+<p>The following table shows the supported configurations for IMU:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Ranges/Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frequency</td>
+<td>50 Hz, 100 Hz, 200 Hz, 400 Hz</td>
+</tr>
+<tr>
+<td>Accelerometer</td>
+<td>2 G, 4 G, 8 G, 16 G</td>
+</tr>
+<tr>
+<td>Gyroscope</td>
+<td>125 dps, 250 dps, 500 dps, 1000 dps, 2000 dps</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>Combined, Split, Only Accelerometer, Only Gyroscope</td>
+</tr>
+</tbody>
+</table>
+<p>When using the digital microphone:</p>
+<ul>
+<li>Data is collected from a digital microphone included in the PSOC™ Edge EVK using PDM to PCM</li>
+<li>Data is sampled at the rate configured in <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> and transmitted over USB</li>
+</ul>
+<p>The following table shows the supported configurations for PDM/PCM:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Ranges/Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gain</td>
+<td>83 dB, 77 dB, 71 dB, 65 dB, 59 dB, 53 dB, 47 dB, 41 dB, 35 dB, 29 dB, 23 dB, 17 dB, 11 dB, 5 dB, -1 dB, -7 dB, -13 dB, -19 dB, -25 dB, -31 dB, -37 dB, -43 dB, -49 dB, -55 dB, -61 dB, -67 dB, -73 dB, -79 dB, -85 dB, -91 dB, -97 dB, -103 dB</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>8 kHz, 16 kHz, 22.05 kHz, 44.1 kHz, 48 kHz</td>
+</tr>
+<tr>
+<td>Stereo (Mode)</td>
+<td>Yes, No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hardware-overview">Hardware overview<a class="headerlink" href="#hardware-overview" title="Permanent link">&para;</a></h3>
+<ul>
+<li>UART (transmit data)<ul>
+<li>P6_7 (UART_TX)</li>
+<li>P6_5 (UART_RX)</li>
+</ul>
+</li>
+<li>I2C (IMU)<ul>
+<li>P8.1 (SDA)</li>
+<li>P8.0 (SCL)</li>
+</ul>
+</li>
+<li>PDM/PCM (Audio)<ul>
+<li>P8_6 (PDM_Data)</li>
+<li>P8_5 (PDM_CLK)</li>
+</ul>
+</li>
+<li>
+<p>USB device</p>
+</li>
+<li>
+<p>This example requires BOOT SW in ON position.</p>
+</li>
+</ul>
+<p>See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</p>
+<p><img src="assets/images/ch7_image_001.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation">Project creation<a class="headerlink" href="#project-creation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application
+   When creating the application, select the <strong>PSOC™ Edge Machine Learning DEEPCRAFT Data Collection</strong> application under the <strong>Machine Learning</strong> section.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+</blockquote>
+<p><img src="assets/images/ch7_image_002.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" />
+2. Build and program the application
+3. The application will start running and you should observe the following output on a terminal connected to the kitProg USB (J8)</p>
+<p><img src="assets/images/ch7_image_003.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Connect a second USB cable to the USB device port available at J30. <br />
+   This will enable the serial port for sensor data collection, and the following will be shown in the terminal.   <blockquote>
+<p>[!NOTE] The terminal should be connected to the kitProg USB port, not to the USB device port, but it shows then a USB host is connected to the PSOC™ Edge USB device interface.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/ch7_image_004.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>The device is ready to transmit data to <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<h3 id="data-collection-with-deepcrafttm-studio-using-graph-ux">Data collection with <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> using Graph UX<a class="headerlink" href="#data-collection-with-deepcrafttm-studio-using-graph-ux" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> includes Graph UX, an intuitive interface used to visualize end-to-end machine learning workflow as graphs. Graph UX is used here to perform live data collection using the IMU or microphone.</p>
+<ol>
+<li>Open <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> and start a new project by clicking on <strong>File</strong> &gt; <strong>New Project</strong> or clicking the <strong>New Project</strong> button in the Welcome window</li>
+</ol>
+<p><img src="assets/images/ch7_image_005.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Select the <strong>Templates</strong> &gt; <strong>Graph UX</strong> &gt; <strong>Generic</strong> folder, click on <strong>Empty Project</strong>, add a <strong>New Project Name</strong> of your preference, and select a workspace <strong>Location</strong></li>
+</ol>
+<p><img src="assets/images/ch7_image_006.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>With the EVK programmed and running the DEEPCRAFT™ machine learning data collection example as explained earlier in this section, open the canvas <em>Main.imunit</em> and expand the <strong>Boards</strong> folder in the <strong>Node explorer</strong> panel</li>
+</ol>
+<blockquote>
+<p>[!NOTE] Observe how <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> recognizes the PSOC™ Edge EVK and lists the sensors supported by this board.</p>
+</blockquote>
+<p><img src="assets/images/ch7_image_007.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Drag-and-drop one of the corresponding sensors into the canvas</li>
+<li>For IMU project, select the <strong>IMU</strong> component. <br />
+   The sensor is preconfigured to 50Hz frequency, 8G range, 500dps and Combined mode, which is how the deploy project in the next steps expects it.</li>
+</ol>
+<blockquote>
+<p>[!NOTE] Note that the deploy example only expects accelerometer data without gyroscope.</p>
+</blockquote>
+<p><img src="assets/images/ch7_image_008.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>For PDM/PCM project, select the <strong>microphone</strong> component.<br />
+   The sensor is preconfigured to 16kHz, 5dB gain, and mono mode, which is how the deploy project in the next steps expects it.</li>
+</ol>
+<p><img src="assets/images/ch7_image_009.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="7">
+<li>Streaming video data is not necessary to build a model, but it can be helpful in labeling data. Go to the <strong>Node Explorer</strong> and drag-and-drop the <strong>Library</strong> &gt; <strong>Capture Device</strong> &gt; <strong>Local Camera</strong> component</li>
+</ol>
+<blockquote>
+<p>[!NOTE] Note that <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> allows to select the corresponding camera device if multiple cameras are connected to your PC.</p>
+</blockquote>
+<ol start="8">
+<li>For IMU project:</li>
+</ol>
+<p><img src="assets/images/ch7_image_010.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="9">
+<li>For PDM/PCM project, skip this step since capturing video is not as useful when labeling data</li>
+<li>Visualization nodes help visualize data collected from sensors in the form of tracks in the session file. <br />
+   Drag-and-drop corresponding <strong>Tracks</strong> from <strong>Node Explorer</strong> inside the <strong>Library</strong> &gt; <strong>Tracks</strong> folder.</li>
+<li>For IMU, drag-and-drop a <strong>Data Track</strong> and connect it to <strong>IMU</strong>; and a <strong>Video Track</strong> which must be connected to the <strong>Local</strong> <strong>Camera</strong> component</li>
+</ol>
+<p><img src="assets/images/ch7_image_011.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="12">
+<li>For PDM/PCM, drag-and-drop a <strong>Data Track</strong> and connect it to the <strong>Microphone</strong> component</li>
+</ol>
+<p><img src="assets/images/ch7_image_012.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="13">
+<li>Real-time data can be labeled by adding a <strong>Predefined Labels</strong> component into the canvas. From the <strong>Node Explorer</strong>, drag-and-drop <strong>the Library</strong> &gt; <strong>Annotation</strong> &gt; <strong>Predefined Labels</strong> component into your canvas. Then, select it and label</li>
+<li>For IMU, add the labels: <strong>shaking and circle.</strong> These labels are expected by the machine learning model used in the next steps</li>
+</ol>
+<p><img src="assets/images/ch7_image_013.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="15">
+<li>For PDM/PCM, add the label <em><code>baby_cry</code></em>. This label is expected by the machine learning model utilized in the next steps</li>
+</ol>
+<p><img src="assets/images/ch7_image_014.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="16">
+<li>Now that data collection is ready, click the <strong>Start</strong> button to start the Graph UX live recording session</li>
+</ol>
+<p><img src="assets/images/ch7_image_015.png" alt="A screenshot of a computer" style="width:401px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="17">
+<li>In the newly opened <strong>live.imsession</strong> window, click the <strong>Start</strong> button and observe the data. Select a predefined label to make it easier to detect each activity</li>
+</ol>
+<blockquote>
+<p>[!NOTE] You can use Alt+number to select different labels.</p>
+</blockquote>
+<ol start="18">
+<li>For IMU, perform the movement activities: <strong>shaking</strong> or <strong>circle</strong></li>
+</ol>
+<p><img src="assets/images/ch7_image_016.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="19">
+<li>For PDM/PCM, play baby-crying sounds and click on the <em><code>baby_cry</code></em> label when sound is playing</li>
+</ol>
+<p><img src="assets/images/ch7_image_017.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="20">
+<li>Click <strong>Ctrl+S</strong> or <strong>File</strong> &gt; <strong>Save</strong>. A window will appear with information about the session. Select a <strong>location</strong>, <strong>Session Name</strong>, and modify <strong>Track Options</strong> if needed</li>
+<li>For IMU, you should observe tracks for label, video and data:</li>
+</ol>
+<p><img src="assets/images/ch7_image_018.png" alt="A screenshot of a program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="22">
+<li>For PDM/PCM, you should observe tracks for audio data and label:</li>
+</ol>
+<p><img src="assets/images/ch7_image_019.png" alt="A screenshot of a computer program" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="23">
+<li>Repeat the process to record more data</li>
+</ol>
+<p>These output files will be imported into <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>This exercise successfully created a PSOC™ Edge E84 MCU application using ModusToolbox™ to collect data and transmit it to <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> using Graph UX.</p>
+<p>You should now have IMU and/or PDM/PCM data which will be used to train a machine learning model using <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<h2 id="deepcrafttm-studio-model-creation-and-generation"><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>: Model creation and generation<a class="headerlink" href="#deepcrafttm-studio-model-creation-and-generation" title="Permanent link">&para;</a></h2>
+<h3 id="objective_1">Objective<a class="headerlink" href="#objective_1" title="Permanent link">&para;</a></h3>
+<p>The previous section collected data to detect either different motion activities using IMU, or for baby crying detection using a microphone via PDM/PCM. This section goes through the steps of creating a model, data labeling, pre-processing, model generation, validation, and deployment using the data collected in the previous example.</p>
+<blockquote>
+<p>[!NOTE] Images and steps in this section are shown for IMU if the process between both flows is similar; otherwise, the guide explains the differences when using PDM/PCM.</p>
+</blockquote>
+<h3 id="deepcrafttm-studio-project-creation"><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> project creation<a class="headerlink" href="#deepcrafttm-studio-project-creation" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> provides different templates for custom applications and accelerators, which contain datasets, pre-processing, model architecture, and instructions for simplified Edge AI model development. This session uses the <strong><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> Accelerators</strong> to detect movement types from IMU data and baby cry detection from audio data.</p>
+<p>Follow the next steps to create the <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> machine learning project:</p>
+<ol>
+<li>In <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>, start a new project by clicking on <strong>File</strong> &gt; <strong>New Project</strong> or clicking the <strong>New Project</strong> button in the Welcome window</li>
+<li>Select the corresponding accelerator project in the <strong>New Project</strong> window, provide a <strong>New Project Name,</strong> and select the <strong>Location.</strong> Make sure <strong>Download Project Data</strong> is selected</li>
+<li>For IMU, select Studio Accelerators &gt; Classification &gt; IMU and Vibration &gt; Movement Type Detection</li>
+</ol>
+<p><img src="assets/images/ch7_image_020.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>For PDM/PCM, select <strong>Studio Accelerator</strong> &gt; <strong>Classification</strong> &gt; <strong>Microphone</strong> &gt; <strong>Baby Cry Detection</strong> <strong>(Studio Accelerator)</strong></li>
+</ol>
+<p><img src="assets/images/ch7_image_021.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Observe that <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> will download data in the background. This is an essential step since adding more data enables the project to generate a more accurate model. Click <strong>OK</strong> to close the window</li>
+</ol>
+<p><img src="assets/images/ch7_image_022.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>The project will be created, and the collected data can then be imported.</p>
+<h3 id="deepcrafttm-studio-data-import"><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> data import<a class="headerlink" href="#deepcrafttm-studio-data-import" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> allows for easy importing of new data into a project. <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> supports importing the file types in the following table.</p>
+<p><strong>Table 3. Data formats supported in <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>File type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio</td>
+<td>.wav</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>.csv, .data, .label</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>.mp4</td>
+</tr>
+</tbody>
+</table>
+<p>Follow the next steps to import the previously collected data into <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<ol>
+<li>Open the corresponding project file (.improj) present in the Solutions Explorer tab</li>
+</ol>
+<p><img src="assets/images/ch7_image_023.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<blockquote>
+<p>[!NOTE] Select the<em> </em><strong>Data</strong><em> </em>tab and observe that the project already contains data to make it easier to generate a more accurate model. Double-click the files and observe the data. All imported data is labeled and classified.</p>
+</blockquote>
+<p><img src="assets/images/ch7_image_024.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>In the <strong>improj</strong> panel, go to the <strong>Data</strong> tab and click the <strong>Add Data</strong> button</li>
+</ol>
+<p><img src="assets/images/ch7_image_025.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>In the <strong>Add Data</strong> window, select the folder where the recorded data was stored. <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> will show the number of detected tracks. Click <strong>Next</strong></li>
+</ol>
+<blockquote>
+<p>[!NOTE] The image below shows steps for IMU which includes tracks for data, label, and optionally video if a camera was used. PDM/PCM data only includes the data and label tracks.</p>
+</blockquote>
+<p><img src="assets/images/ch7_image_026.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>A new window will appear with a summary of the data. Click <strong>OK.</strong></li>
+</ol>
+<p><img src="assets/images/ch7_image_027.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="data-labeling-and-set-assignment">Data labeling and set assignment<a class="headerlink" href="#data-labeling-and-set-assignment" title="Permanent link">&para;</a></h3>
+<p>Data labeling allows labeling of raw data with expected classifications. When the model is being trained, the data is used, and the model gives a classification, which is then compared to the label given by the user. The model weights are then adjusted depending on whether the correct classification was achieved.</p>
+<ol>
+<li>The data was previously labeled while collecting; however, <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> allows adding and adjusting labels after data is imported</li>
+</ol>
+<p>To observe and adjust or add labels of the newly imported data, follow the next steps:</p>
+<ol>
+<li>In the data window, click on the <strong>Set</strong> filter, and select <strong>Unassigned</strong>. This will allow us to easily observe the newly added data</li>
+</ol>
+<p><img src="assets/images/ch7_image_028.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Double-click in any data entry</li>
+<li>This will open the corresponding session, and the data and labels can be observed</li>
+<li>Labels can be adjusted simply by dragging them to match the sensor data; or, they can be added by right-clicking on the data window and selecting <strong>Add label</strong></li>
+<li>When adding a new label, the following window will appear</li>
+</ol>
+<p><img src="assets/images/ch7_image_029.png" alt="A screenshot of a computer program" style="width:416px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>Configure the following parameters:</li>
+</ol>
+<p><strong>Table 4. Parameters for new labels</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Track</td>
+<td>Select the label track in which you want to add the labels</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>Enter the name of the label to add for that specific piece of data in the track</td>
+</tr>
+<tr>
+<td>Begin</td>
+<td>Set the timestamp from where the label starts</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>Set the timestamp for how long the label lasts</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>Enter the confidence percentage for the input label</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>Comment for label, if required</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE] For IMU, the supported labels are:<em> </em><strong>circle and shaking</strong><code>`; For PDM/PCM, only the</code> <code>*</code>baby_cry`*<em> </em>label is implemented.</p>
+</blockquote>
+<ol start="7">
+<li>After a new label is created, it can then be manually adjusted by dragging the sides to make it longer or grabbing the middle of the label to move it</li>
+<li>After labeling all the data, go back to the project file (*.improj). Select <strong>Save All</strong>, then select <strong>Rescan Data</strong>, and then <strong>Quick Scan</strong> to ensure all labeling is registered by the project as shown in the figure below</li>
+</ol>
+<p><img src="assets/images/ch7_image_031.png" alt="A screenshot of a computer program" style="width:406px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch7_image_032.png" alt="Figure" style="width:336px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="9">
+<li>For the newly added data, select the drop-down menu under <strong>Set</strong> and set to <strong>Train</strong></li>
+</ol>
+<p>This sets the data as part of the training data set.</p>
+<p><img src="assets/images/ch7_image_033.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="10">
+<li>A recommended distribution is: 60% train, 20% validation, 20% test</li>
+</ol>
+<p>The <strong>Redistribution Sets</strong> button can be used to redistribute collected data.</p>
+<p><img src="assets/images/ch7_image_034.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>After the data is completely labeled and distributed, it can be used to train the model.</p>
+<h3 id="pre-processing">Pre-processing<a class="headerlink" href="#pre-processing" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> includes pre-processing that can be configured depending on the type of data being used. For this lab, the pre-processing pipeline is already set in the starter projects. It is encouraged to look at the preprocessor to get familiar with the process of adding layers.</p>
+<ol>
+<li>To observe the pre-processing layers, select the <strong>Preprocessor</strong> tab</li>
+<li>For IMU, the preprocessor uses a 50‑frame sliding window for evaluating data over a period of 2 seconds as the data rate is 50 Hz</li>
+</ol>
+<p><img src="assets/images/ch7_image_035.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>For PDM/PCM, the preprocessor includes the following layers: sliding window, Hann smoothing, real discrete Fourier transform, Frobenuis norm, Mel filterbank, clip, logarithm, and a second sliding window as shown in the figure below</li>
+</ol>
+<p><img src="assets/images/ch7_image_036.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="model-generation">Model generation<a class="headerlink" href="#model-generation" title="Permanent link">&para;</a></h3>
+<p>Once all data has been collected and the preprocessor is built, data needs to be passed to the model for training. The movement type detection and baby crying detection accelerator projects include four model architectures that are ready to be trained with your data.</p>
+<ol>
+<li>To observe the supplied models, select the <strong>Training</strong> tab, and observe that four models are included</li>
+</ol>
+<p><img src="assets/images/ch7_image_037.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Select one of the four models generated by <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>. This brings up the corresponding model architecture</li>
+<li>For movement type detection using IMU, the supplied model is a 2D convolutional neural network containing several convolutional layers, batch normalization, activation functions, pooling, and a dense layer for classification into three classes, as shown in the following image:</li>
+</ol>
+<p><img src="assets/images/ch7_image_038.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>For baby crying detection using PDM/PCM, the detection model is a 2D convolutional neural network containing the following layers:</li>
+</ol>
+<p><img src="assets/images/ch7_image_039.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Layers can be added or removed by using the plus (+) and X buttons. This is not required for this lab as the models provided are ready for training</li>
+<li>Start the model training by selecting <strong>Start New Training Job</strong></li>
+</ol>
+<p><img src="assets/images/ch7_image_040.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="7">
+<li>If not signed in already, a prompt directs you to the DEEPCRAFT™ account sign-in to start the training</li>
+<li>A <strong>New Training Job</strong> window comes up showing the available credits, and a Description window to add comments about the training job. Select <strong>OK</strong> to start the training job</li>
+</ol>
+<p><img src="assets/images/ch7_image_041.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="9">
+<li>Once a training job is started, a window comes up asking if you want to open the current job. Select <strong>Open</strong></li>
+</ol>
+<p>A job screen will show up, showing statistics on the training progress.</p>
+<p><img src="assets/images/ch7_image_042.png" alt="Figure" style="width:336px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch7_image_043.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>Once the <strong>Status</strong> for each model has changed from <strong>Unknown</strong> to <strong>Started</strong> to <strong>Completed</strong>, the model’s results can be validated. <br />
+Select one of the models, and the training statistics for that model will display.</p>
+<p><img src="assets/images/ch7_image_044.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="10">
+<li><a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> compares the model statistics and recommends the best model by putting a gold medal in the <strong>Selected Best</strong> category</li>
+</ol>
+<blockquote>
+<p>[!NOTE] Model development is an iterative process. If a model does not perform a**s needed, this may mean that more training data is needed, the preprocessor needs to be reconfigured, or the model layers needs to be changed.</p>
+</blockquote>
+<ol start="11">
+<li>When a model meets the user’s criteria, the model can be downloaded using the <strong>Download</strong> icon next to the model</li>
+</ol>
+<p>A <strong>Download Model Files</strong> windowcomes up. Click on <strong>Download</strong>, select the <strong>Models</strong> folder inside the <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> project, then select <strong>OK</strong>.</p>
+<p><img src="assets/images/ch7_image_045.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch7_image_046.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p>A model was created and trained with default data from the DEEPCRAFT™ accelerator, and additional data captured using PSOC™ Edge.</p>
+<h3 id="generate-model-files">Generate model files<a class="headerlink" href="#generate-model-files" title="Permanent link">&para;</a></h3>
+<p>The last step in <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> is to generate the machine learning model files.</p>
+<p>Along with generating a model, <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> generates files for the pre-processing that was selected for the project. To use the preprocessor, three functions are provided:</p>
+<p><strong>Table 5. Model functions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMAI_init</td>
+<td>Initializes the preprocessor</td>
+</tr>
+<tr>
+<td>IMAI_enqueue</td>
+<td>Feeds the preprocessor data</td>
+</tr>
+<tr>
+<td>IMAI_dequeue</td>
+<td>Returns a buffer with the preprocessed data, which is used to get an inference</td>
+</tr>
+</tbody>
+</table>
+<p>To generate the files required for deployment:</p>
+<ol>
+<li>Following the steps from the previous section, the model should be available in <br />
+<code>{[DEEPCRAFT™ Studio](https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio) project}/Models/{model name}</code></li>
+</ol>
+<p>Double-click the *.h5 model in this folder.</p>
+<p><img src="assets/images/ch7_image_047.png" alt="Figure" style="width:487px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>A new page with model information is displayed</li>
+</ol>
+<p>Observe that this window includes information about the Model’s <strong>Preprocessor</strong>, <strong>Network</strong>, and <strong>Evaluation,</strong> but it also allows to generate code for the model using the <strong>Code Gen</strong> tab. <br />
+Try navigating through the different tabs to observe the model configuration and evaluation results.</p>
+<p><img src="assets/images/ch7_image_048.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Select the <strong>Code Gen</strong> tab and configure the parameters.  <blockquote>
+<p>[!NOTE] The Code Gen tab allows you to generate output that can then be used in an embedded device.</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>Table 6. Code generation for IMU using CM55+U55 with int8x8 quantization</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Architecture</td>
+<td>Infineon PSOC™</td>
+<td>Generate code for PSOC™ MCU</td>
+</tr>
+<tr>
+<td>Target Device</td>
+<td>PSOC™ Edge M55/U55</td>
+<td>Generate code for M55 CPU + U55 NPU</td>
+</tr>
+<tr>
+<td>Output directory</td>
+<td>Infineon</td>
+<td>Project folder for output files</td>
+</tr>
+<tr>
+<td>Output File Prefix</td>
+<td>model</td>
+<td>Prefix to match corresponding deploy code example</td>
+</tr>
+<tr>
+<td>C Prefix</td>
+<td>IMAI_</td>
+<td>Prefix to match deploy code example</td>
+</tr>
+<tr>
+<td>ModusToolbox™ Project Path</td>
+<td>Blank</td>
+<td>Files created locally and will be copied manually</td>
+</tr>
+<tr>
+<td>Preprocessor Acceleration</td>
+<td>CMSIS Floating Point (Float32)</td>
+<td>Use CMSIS floating point library</td>
+</tr>
+<tr>
+<td>Enable Network Quantization</td>
+<td>Enabled</td>
+<td>Use 8-bit quantization.</td>
+</tr>
+<tr>
+<td>Use Project File</td>
+<td>Select corresponding .improj file</td>
+<td>Select DEEPCRAFT™ .improj project file for quantization.</td>
+</tr>
+<tr>
+<td>Enable Sparsity</td>
+<td>Disabled</td>
+<td>Sparsity disabled</td>
+</tr>
+<tr>
+<td>Skip cleanup</td>
+<td>Disabled</td>
+<td>Enable cleanup of temporary files</td>
+</tr>
+<tr>
+<td>Ethos™-U Tensor Allocator</td>
+<td>Hill Climb</td>
+<td>Using Hill Climb algorithm for allocating non‑constant tensors on the NPU and CPU</td>
+</tr>
+<tr>
+<td>Ethos™-U System Config</td>
+<td>SOCMEM 300MHz</td>
+<td>Using SOCMEM/SystemSRAM at 300MHz</td>
+</tr>
+<tr>
+<td>Ethos™-U Optimize</td>
+<td>Performance</td>
+<td>Performance strategy prioritizes maximal performance by utilizing the specified arena cache memory area size</td>
+</tr>
+<tr>
+<td>Ethos™-U Memory Mode</td>
+<td>Shared Sram</td>
+<td>Shared SRAM is shared between Ethos™-U and Cortex®-M software</td>
+</tr>
+<tr>
+<td>Max Block Dependency</td>
+<td>3</td>
+<td>Maximum value that can be used for the block dependency delay between NPU kernel operations. A lower value may result in longer execution time.</td>
+</tr>
+<tr>
+<td>Recursion Limit</td>
+<td>1000</td>
+<td>Python internal limit to depth of recursion. If generation fails with a recursion error, increase the limit using this option.</td>
+</tr>
+<tr>
+<td>Arena Cache Size</td>
+<td>2936012</td>
+<td>Size of the arena cache memory area, in bytes</td>
+</tr>
+</tbody>
+</table>
+<p><img src="assets/images/ch7_image_049.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<p><img src="assets/images/ch7_image_050.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Select <strong>Generate Code</strong> to generate the source. <br />
+   A <strong>Code Generation Report</strong> will appear after completion.</li>
+</ol>
+<p>The generated files will be available under <code>Models/{model name}/Infineon folder</code>.</p>
+<p><img src="assets/images/ch7_image_051.png" alt="Figure" style="width:480px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_1">Conclusion<a class="headerlink" href="#conclusion_1" title="Permanent link">&para;</a></h3>
+<p>This exercise successfully generated model files with the addition of the previously collected data.</p>
+<p>These model files are now ready to be deployed onto a PSOC™ Edge E84 MCU device once they are copied to the ModusToolbox™ deploy project.</p>
+<h2 id="code-example-deepcrafttm-ml-deploy-imu-or-pdmpcm">Code example: DEEPCRAFT™ ML deploy (IMU or PDM/PCM)<a class="headerlink" href="#code-example-deepcrafttm-ml-deploy-imu-or-pdmpcm" title="Permanent link">&para;</a></h2>
+<h3 id="objective_2">Objective<a class="headerlink" href="#objective_2" title="Permanent link">&para;</a></h3>
+<p>Now that the model is created and trained, it’s time to deploy it. This section demonstrates how to deploy a model onto a PSOC™ Edge E84 MCU device.</p>
+<p>ModusToolbox™ includes deploy examples for IMU and PDM/PCM, and the projects can be configured to run the model on the Arm® Cortex®‑M55 CPU leveraging the Arm® Ethos™‑U55 NPU (M55/U55), or the Arm® Cortex®‑M33 CPU (CM33).</p>
+<blockquote>
+<p>[!NOTE] Images and steps in this section are shown for IMU if the process between both flows is similar; otherwise, the guide explains the differences when using PDM/PCM.</p>
+</blockquote>
+<h3 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h3>
+<p>ModusToolbox™ includes the following code examples to deploy ML models:</p>
+<ul>
+<li>PSOC™ Edge Machine learning DEEPCRAFT™ Deploy Motion: for deploying IMU-based movement type detection model</li>
+<li>PSOC™ Edge Machine learning DEEPCRAFT™ Deploy Audio: for deploying PDM/PCM-based baby crying detection model</li>
+</ul>
+<p>These examples use the output of DEEPCRAFT™ code generation to deploy the model to the device.</p>
+<h4 id="description-of-movement-type-detection-project">Description of movement type detection project<a class="headerlink" href="#description-of-movement-type-detection-project" title="Permanent link">&para;</a></h4>
+<p>The <strong>movement type detection</strong> model takes data from the BMI270 motion sensor. The data consists of the 3-axis accelerometer data and 3-axis gyroscope data obtained from the BMI270 IMU at 50 Hz. The MCU receives the data from the IMU once every 200ms using an internal FIFO within the BMI270 IMU, and the IMU then triggers a hardware interrupt so that the PSOC™ Edge MCU can receive the data and perform data processing.</p>
+<p>The interrupt handler reads all the data from the sensor via I2C and feeds it to the <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> preprocessor using the <code>IMAI_enqueue()</code> function. After the preprocessor has enough data, the <code>IMAI_dequeue()</code> function returns the results as scores corresponding to each label. All label scores, along with the label corresponding to the maximum score, are printed on the UART terminal.</p>
+<p>The pre-processing layer uses a 50‑frame sliding window and is shown in Pre-processing.</p>
+<p>The model is a 2D convolutional neural network model consisting of several convolutional layers, as shown in Model generation.</p>
+<h4 id="description-of-baby-crying-detection-project">Description of baby crying detection project<a class="headerlink" href="#description-of-baby-crying-detection-project" title="Permanent link">&para;</a></h4>
+<p>The <strong>baby crying detection</strong> model processes audio data from the pulse-density modulation (PDM) microphone to detect whether a baby is crying or not.</p>
+<p>Input data is received as raw audio from the PDM microphones, then converted to PCM using the built-in PDM/PCM converter block. The received PCM data has a 16kHz sampling rate and it is fed into the audio processing code generated by <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> using the <code>IMAI_enqueue()</code> function after 1024 samples are received. After the processing is done, the <code>IMAI_dequeue()</code> function returns the results in the form of scores corresponding to each of the labels.</p>
+<p>All the label scores, along with the label corresponding to the maximum score beyond a threshold, are printed on the UART terminal.</p>
+<p>The pre-processing layer is shown in section 4.5.</p>
+<p>This project uses a 2D convolutional neural network model, as shown in section 4.6.</p>
+<h3 id="hardware-overview_1">Hardware overview<a class="headerlink" href="#hardware-overview_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>UART (Transmit data):</li>
+<li>P6_7 (UART_TX)</li>
+<li>P6_5 (UART_RX)</li>
+<li>GPIO (User button):</li>
+<li>P8_3 (USER_BTN1)</li>
+<li>I2C (IMU):</li>
+<li>P8.1 (SDA)</li>
+<li>P8.0 (SCL)</li>
+<li>PDM/PCM (Audio):</li>
+<li>P8_6 (PDM_Data)</li>
+<li>P8_5 (PDM_CLK)</li>
+<li>USB device</li>
+</ul>
+<blockquote>
+<p>[!NOTE] This example requires BOOT SW in ON position.</p>
+</blockquote>
+<p>See <a href="pse84-technical-intro-features-training-manual-appendix-b.html">Appendix B: KIT_PSE84_EVAL details</a> for more details.</p>
+<p><img src="assets/images/ch7_image_052.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="project-creation_1">Project creation<a class="headerlink" href="#project-creation_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow steps in <a href="pse84-technical-intro-features-training-manual-appendix-a.html">Appendix A: Creating a PSOC™ Edge application in ModusToolbox™</a> to create a new application</li>
+<li>Select the corresponding application, depending on whether you are using IMU or PDM/PCM</li>
+</ol>
+<p>Note: To prevent issues with Windows path length, it’s recommended to rename the project if your workspace path is long.</p>
+<ol start="3">
+<li>For IMU, select the PSOC™ Edge Machine Learning DEEPCRAFT™ Deploy Motion application under the <strong>Machine Learning</strong> section</li>
+</ol>
+<p><img src="assets/images/ch7_image_053.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>For PDM/PCM, select the PSOC™ Edge Machine Learning DEEPCRAFT™ Deploy Audio application under the <strong>Machine Learning</strong> section</li>
+</ol>
+<p><img src="assets/images/ch7_image_054.png" alt="Figure" style="width:800px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Build and program the project</li>
+</ol>
+<blockquote>
+<p>[!NOTE] First, the default project included in ModusToolbox™ is used, and the updated model is added in subsequent steps.</p>
+</blockquote>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<h4 id="output-using-imu">Output using IMU<a class="headerlink" href="#output-using-imu" title="Permanent link">&para;</a></h4>
+<p>After programing is successful, open the serial terminal and configure it as 115200-8-N-1.</p>
+<p>The confidence for each classification is shown on the terminal. Shake the board or perform a circle motion and see the confidence levels change accordingly.</p>
+<p><img src="assets/images/ch7_image_055.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h4 id="output-using-pdmpcm">Output using PDM/PCM<a class="headerlink" href="#output-using-pdmpcm" title="Permanent link">&para;</a></h4>
+<p>After programing is successful, open the serial terminal and configure it as 115200-8-N-1.<br />
+The confidence for each classification is shown on the terminal. <br />
+Use a speaker to play baby-crying sounds and observe confidence levels in the terminal.</p>
+<p><img src="assets/images/ch7_image_056.png" alt="A screenshot of a computer" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="modify-the-application">Modify the application<a class="headerlink" href="#modify-the-application" title="Permanent link">&para;</a></h3>
+<p>The deploy code example comes with corresponding pre-trained model files for movement type detection and baby crying detection. After completing the previous labs, you should have generated the new model files required to deploy your own customized DEEPCRAFT™ model.</p>
+<p>To deploy the updated model:</p>
+<ol>
+<li>Copy the following files from the <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a> project into the deploy project</li>
+</ol>
+<ul>
+<li>Source: <code>{DEEPCRAFT project}/Models/{model_name}/Infineon/</code></li>
+<li>Destination: <code>{ModusToolbox™ Deploy Example}.proj_cm55/model/</code></li>
+<li>Files: <code>model.c/.h</code></li>
+</ul>
+<p><img src="assets/images/ch7_image_057.png" alt="A screenshot of a computer program" style="width:343px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Build and re-program the device with the configured application</li>
+<li>Open a terminal program and select the KitProg3 COM port. Set the serial port parameters to <strong>8N1</strong> and <strong>115200</strong> baud</li>
+</ol>
+<h4 id="further-modification">Further modification<a class="headerlink" href="#further-modification" title="Permanent link">&para;</a></h4>
+<p>The code examples support running models on both the M33 and M55.</p>
+<ul>
+<li>Open <em>common.mk</em> and set ML_DEEPCRAFT_CPU to cm55 or cm33.</li>
+<li>Open the corresponding <code>proj_cmxx/Makefile</code> and set NN_TYPE to <strong>int8x8</strong> or float to select desired quantization</li>
+<li>Adjust the <strong>Code Generation</strong> parameters accordingly in <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a></li>
+</ul>
+<h3 id="conclusion_2">Conclusion<a class="headerlink" href="#conclusion_2" title="Permanent link">&para;</a></h3>
+<p>You have now successfully created a PSOC™ Edge E84 MCU code example that runs a model generated in <a href="https://www.infineon.com/design-resources/embedded-software/deepcraft-edge-ai-solutions/deepcraft-studio">DEEPCRAFT™ Studio</a>.</p>
+<h3 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*A</td>
+<td>2026-09-26</td>
+<td>Updated to latest tools and using Visual Studio Code.</td>
+</tr>
+<tr>
+<td></td>
+<td>2025-01-15</td>
+<td>Initial release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSOC&trade;, is a trademark of Infineon Technologies. Any references to PSOC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSOC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-ch6-lowpower.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 6: Low Power">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapter 6: Low Power
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="pse84-technical-intro-features-training-manual-appendix-a.html" class="md-footer__link md-footer__link--next" aria-label="Next: Appendix A: Creating an application">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Appendix A: Creating an application
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
